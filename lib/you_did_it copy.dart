@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class YouDidIt extends StatefulWidget {
+class Great extends StatefulWidget {
   @override
-  _YouDidItState createState() => _YouDidItState();
+  _Great createState() => _Great();
 }
 
-class _YouDidItState extends State<YouDidIt> {
+class _Great extends State<Great> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +40,7 @@ class _YouDidItState extends State<YouDidIt> {
                                               )
                                               ),
                                    Padding(padding: EdgeInsets.only(top:10)),  
-                                    Text( "! فعلتها",
+                                    Text( "عمل رائع",
                                       textAlign: TextAlign.center,
                                         style:TextStyle(
                                           fontSize:  43,
@@ -48,7 +48,7 @@ class _YouDidItState extends State<YouDidIt> {
                                           color: Color.fromRGBO(111, 111, 111, 1),
                                         ),
                                     ), 
-                                    Text( "مبروك! قمت بالتسجيل بنجاح",
+                                    Text( "تمت الإجابة على الطلب ",
                                       textAlign: TextAlign.center,
                                         style:TextStyle(
                                           height: 1.6 ,
@@ -68,7 +68,7 @@ class _YouDidItState extends State<YouDidIt> {
                                                   borderRadius: BorderRadius.circular(100),
                                                   side:BorderSide(color: Color.fromRGBO(174, 174, 174, 1),)
                                                 ),
-                                                child: Text ("استمر", 
+                                                child: Text ("Continue", 
                                                       textAlign: TextAlign.center,
                                                         style:TextStyle(
                                                           fontSize: 20,
