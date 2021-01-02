@@ -18,9 +18,29 @@ class _FillupState extends State<Fillup>{
    String _selectedDay;
    String _selectedMth;
    String _selectedYear;
-   var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+   var months = ["جانفي", "فيفري", "مارس", "أفريل", "ماي", "جوان", "جويلية", "أوت", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
    String _selectedPhone;
-    
+
+   var _fName = TextEditingController();
+   var _sName = TextEditingController();
+   var _tName = TextEditingController();
+   var _rName = TextEditingController();
+   var _phone = TextEditingController();
+   var _adress = TextEditingController();
+   var _liwa   = TextEditingController();
+   var _mohafadha = TextEditingController();
+
+   var _id1  = TextEditingController();
+   var _id2  = TextEditingController();
+   var _id3  = TextEditingController();
+   var _id4  = TextEditingController();
+   var _id5  = TextEditingController();
+   var _id6  = TextEditingController();
+   var _id7  = TextEditingController();
+   var _id8  = TextEditingController();
+   var _id9  = TextEditingController();
+   var _id10 = TextEditingController();
+
    addDayItem(){
      var mth;
      var nbDay;
@@ -108,19 +128,21 @@ addPhoneNumber(){
     });
   
 }
-   Widget decoratedTextField(String hint, double fontSize, {TextInputType type=null, int length=null } ){
+   Widget decoratedTextField(String hint, double fontSize, TextEditingController controller,  {TextAlign align=TextAlign.center,TextInputType type=null, int length=null } ){
      double radius = length!=1 ? 11 : 9;
      return  Container(
        height: 50,
-       child: TextField(       
-                    textAlign: length!=1 ? TextAlign.left :  TextAlign.center,
+       child: TextField(    
+                    controller : controller,  
+                    textAlign: align,
                     textAlignVertical: TextAlignVertical.center,
                     style: TextStyle(fontSize:fontSize),
                     keyboardType: type == null ? TextInputType.text : type,                   
                     maxLength: length == null ? null : length,
+                    
                       
                     decoration: InputDecoration(
-                      contentPadding: length!=1 ? EdgeInsets.only(top:15.0, left: 6):EdgeInsets.only(top:0, left: 2),
+                      contentPadding: length!=1 ? EdgeInsets.only(top:15.0, right: 6):EdgeInsets.only(top:0, left: 2),
                       filled: true,
                       fillColor: Colors.grey[200],
                       hintText: hint,
@@ -147,7 +169,7 @@ addPhoneNumber(){
        padding: const EdgeInsets.only(bottom:10.0),
        child: Text( 
                   text, 
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.right,
                     style:TextStyle(
                       fontSize: fntSize==null? 20 : fntSize,
                       fontWeight: FontWeight.bold
@@ -167,10 +189,10 @@ addPhoneNumber(){
       body: Padding(
         padding: const EdgeInsets.only(left:20, right: 20, bottom: 30),
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children:<Widget>[
               Text(
-                   "Fill up", 
+                   "املأ", 
                     textAlign: TextAlign.left,
                     style:TextStyle(
                       fontSize: 40,
@@ -179,7 +201,7 @@ addPhoneNumber(){
                   ),
               Padding(padding: EdgeInsets.only(top:3)),
               Text(
-                   "The Form to continue", 
+                   "المستند للاستمرار", 
                     textAlign: TextAlign.left,
                    style:TextStyle(
                       fontSize: 18,
@@ -190,72 +212,72 @@ addPhoneNumber(){
                   child: SingleChildScrollView(
                   padding: const EdgeInsets.only(top:40.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                    inputTitle ("Full Name"),                     
+                    inputTitle (" اسمك الكامل"),                     
                     Row(
                       children:<Widget>[
                       Flexible(
-                        child: decoratedTextField('First Name',13),
+                        child: decoratedTextField('الاسم الأول', 13, _fName, align:TextAlign.right),
                       ),
                       Padding(padding: EdgeInsets.only(left:10)),                      
                       Flexible(
-                        child:  decoratedTextField('Second Name',13)
+                        child: decoratedTextField('الاسم الثاني', 13,_sName, align: TextAlign.right),
                       )
                     ]),
                     Padding(padding: EdgeInsets.only(bottom:10)),
                     Row(
                       children:<Widget>[
                       Flexible(
-                        child: decoratedTextField('Third Name',13),
+                        child: decoratedTextField('الاسم الثالث', 13,_tName, align:TextAlign.right),
                       ),
                       Padding(padding: EdgeInsets.only(left:10)),                      
                       Flexible(
-                        child:  decoratedTextField('Fourth Name',13)
+                        child: decoratedTextField('الاسم الرابع', 13, _rName, align: TextAlign.right),
                       )
                     ]),
                     Padding(padding: EdgeInsets.only(bottom:40)),                    
-                    inputTitle ("National ID"), 
+                    inputTitle ("الرقم الوطني"), 
                     Row(
                       children:<Widget>[
                       Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,type:TextInputType.number ,length:1)),
+                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,_id1, type:TextInputType.number ,length:1)),
                       ),
                       Padding(padding: EdgeInsets.only(left:5)),
                       Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,type:TextInputType.number ,length:1)),
+                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,_id2, type:TextInputType.number ,length:1)),
                       ),
                       Padding(padding: EdgeInsets.only(left:5)),
                       Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,type:TextInputType.number ,length:1)),
+                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id3, type:TextInputType.number ,length:1)),
                       ),
                       Padding(padding: EdgeInsets.only(left:5)),
                       Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,type:TextInputType.number ,length:1)),
+                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id4, type:TextInputType.number ,length:1)),
                       ),
                       Padding(padding: EdgeInsets.only(left:5)),
                       Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,type:TextInputType.number ,length:1)),
+                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id5, type:TextInputType.number ,length:1)),
                       ),
                       Padding(padding: EdgeInsets.only(left:5)),
                       Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,type:TextInputType.number ,length:1)),
+                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id6, type:TextInputType.number ,length:1)),
                       ),
                       Padding(padding: EdgeInsets.only(left:5)),
                       Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,type:TextInputType.number ,length:1)),
+                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id7, type:TextInputType.number ,length:1)),
                       ),
                       Padding(padding: EdgeInsets.only(left:5)),
                       Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,type:TextInputType.number ,length:1)),
+                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id8, type:TextInputType.number ,length:1)),
                       ),
                       Padding(padding: EdgeInsets.only(left:5)),
                       Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,type:TextInputType.number ,length:1)),
+                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,  _id9, type:TextInputType.number ,length:1)),
                       ),
                       Padding(padding: EdgeInsets.only(left:5)),
                       Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,type:TextInputType.number ,length:1)),
+                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id10, type:TextInputType.number ,length:1)),
                       ),
                       Padding(padding: EdgeInsets.only(left:5)),
                     ]),
@@ -263,8 +285,7 @@ addPhoneNumber(){
                     Padding(padding: EdgeInsets.only(bottom:40)),  
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children:<Widget>[
-                        inputTitle ("Gender"),                                                                        
+                      children:<Widget>[                                                                       
                         Row(
                           children: <Widget>[
                             Container(
@@ -282,7 +303,7 @@ addPhoneNumber(){
                             ),
                             Padding(
                              padding: const EdgeInsets.only(top:5, left:8.0),
-                             child: inputTitle ("Male", fntSize: 16),
+                             child: inputTitle ("ذكر", fntSize: 16),
                             ),                             
                           ],
                         ),                  
@@ -303,15 +324,17 @@ addPhoneNumber(){
                             ),
                           Padding(
                             padding: const EdgeInsets.only(top:5, left:8.0),
-                            child: inputTitle ("Female", fntSize: 16),
+                            child: inputTitle ("أنثى", fntSize: 16),
                           ),                             
                           ],
                         ),
+                        
+                        inputTitle ("الجنس"), 
                       ]
                     ),
                     
                     Padding(padding: EdgeInsets.only(bottom:40)),  
-                    inputTitle ("Date of birthday"), 
+                    inputTitle ("تاريخ الميلاد"), 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -324,7 +347,7 @@ addPhoneNumber(){
                           ),
                           ),
                           child: Container(
-                                  width: MediaQuery.of(context).size.width/6,
+                                  width: MediaQuery.of(context).size.width/6+5,
                                   child: DropdownButtonHideUnderline(
                                         child: DropdownButton(
                                                   hint:  Padding(
@@ -332,7 +355,7 @@ addPhoneNumber(){
                                                     child: Align(                                              
                                                             alignment: Alignment.centerLeft,
                                                             child: Text(
-                                                              "Day",
+                                                              "اليوم",
                                                               style: TextStyle(color: Colors.grey, fontSize: 14),
                                                             )),
                                                   ),
@@ -361,7 +384,7 @@ addPhoneNumber(){
                                                     child: Align(                                              
                                                             alignment: Alignment.centerLeft,
                                                             child: Text(
-                                                              "Month",
+                                                              "الشهر",
                                                               style: TextStyle(color: Colors.grey, fontSize: 14),
                                                             )),
                                                   ),
@@ -389,7 +412,7 @@ addPhoneNumber(){
                                                     child: Align(                                              
                                                             alignment: Alignment.centerLeft,
                                                             child: Text(
-                                                              "Year",
+                                                              "السنة",
                                                               style: TextStyle(color: Colors.grey, fontSize: 14),
                                                             )),
                                                   ),
@@ -404,7 +427,7 @@ addPhoneNumber(){
                     ),
                     
                     Padding(padding: EdgeInsets.only(bottom:40)),  
-                    inputTitle ("Number Phone"), 
+                    inputTitle ("رقم الهاتف"), 
                      Row(
                         mainAxisAlignment : MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -452,18 +475,18 @@ addPhoneNumber(){
                          ),
                        
                       Padding(padding: EdgeInsets.only(left:8)),  
-                      Expanded(child: decoratedTextField('', 13, type:TextInputType.number, length: 15))
+                      Expanded(child: decoratedTextField('', 13, _phone, type:TextInputType.number, length: 15))
                     ],),
                     
                     Padding(padding: EdgeInsets.only(bottom:40)),  
-                    inputTitle ("Adress"), 
-                    decoratedTextField('', 13),
+                    inputTitle ("العنوان"), 
+                    decoratedTextField('', 13, _adress),
                     Padding(padding: EdgeInsets.only(bottom:40)),  
-                    inputTitle ("City"), 
-                    decoratedTextField('', 13),
+                    inputTitle ("المحافظة"), 
+                    decoratedTextField('', 13, _mohafadha),
                     Padding(padding: EdgeInsets.only(bottom:40)),  
-                    inputTitle ("District"), 
-                    decoratedTextField('', 13),
+                    inputTitle ("اللواء"), 
+                    decoratedTextField('', 13, _liwa),
                     Padding(padding: EdgeInsets.only(bottom:40)),  
                     Container(
                       width: MediaQuery.of(context).size.width,
@@ -475,10 +498,10 @@ addPhoneNumber(){
                           borderRadius: BorderRadius.circular(100),
                           side:BorderSide(color: Color.fromRGBO(174, 174, 174, 1),)
                         ),
-                        child: Text(  "Sign Up", 
+                        child: Text(  "تسجيل", 
                               textAlign: TextAlign.center,
                                 style:TextStyle(
-                                  fontSize: 25,
+                                  fontSize: 22,
                                   color: Color.fromRGBO(137, 137, 137, 1),
                                 ),
                               ),
@@ -490,37 +513,36 @@ addPhoneNumber(){
                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                      crossAxisAlignment: CrossAxisAlignment.start,
                      children: <Widget>[
+                      Transform.rotate(
+                          angle: 180 * 3.14 / 180, 
+                          child: IconButton(padding: EdgeInsets.only(right:18,top: 0), icon: Icon(Icons.exit_to_app, size: 55,), onPressed: null),
+                      ),
                       Container(
-                         // padding: EdgeInsets.only(top:5),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                          //  mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            Text( "If you have already an account", 
-                              textAlign: TextAlign.left,
+                            Text( "هل لديك حساب", 
+                              textAlign: TextAlign.right,
                               style:TextStyle(
                                 fontSize: 12,
                                 color: Colors.grey
                               ),
                             ), 
                             FlatButton(
-                              padding: EdgeInsets.only(right:40,left: 0),
                               child: Align(
-                              alignment: Alignment.centerLeft,
+                              alignment: Alignment.centerRight,
                               child: Text(
-                                "Sign In",
+                                "تسجيل الدخول",
                                 style:TextStyle(                                  
                                 decoration: TextDecoration.underline,
                                 fontSize: 12,
                                 color: Colors.grey),
-                                textAlign: TextAlign.left
+                                textAlign: TextAlign.right
                               ),
                                       ),
                               onPressed: (){}
                             ,)
                         ],),
                       ),
-                      IconButton(padding: EdgeInsets.only(right:18,top: 4), icon: Icon(Icons.exit_to_app, size: 55,), onPressed: null)
                      ],
                    )
                   ],)

@@ -11,28 +11,33 @@ Widget myDrawer (BuildContext context ){
              child: Container(
                child: CustomPaint(
                         child: Container(
-                          margin: EdgeInsets.only(right:50,bottom: MediaQuery.of(context).size.height*0.2),
+                          margin: EdgeInsets.only(right:20, top: 20, bottom: MediaQuery.of(context).size.height*0.2),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
                             
                               Padding(padding:EdgeInsets.only(top: 20)),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 children: <Widget>[
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: <Widget>[
+                                      Text(name, style: TextStyle(color: Colors.grey.shade800, fontSize: 23, fontWeight: FontWeight.bold),),
+                                      Text(email, style: TextStyle(color: Colors.grey.shade900, fontSize: 16),),
+                                    ],
+                                  ),
+                                  Padding(padding:EdgeInsets.only(top: 10, left: 20)),
                                   CircleAvatar(
-                                      radius: 27,
-                                      //backgroundColor: Colors.grey,
-                                      child: CircleAvatar(                                        
-                                        backgroundColor: Colors.transparent,
-                                        radius: 25,
-                                        child:Icon(Icons.person, color: Colors.grey.shade900,)
-                                      ),
+                                    radius: 27,
+                                    backgroundColor: Colors.grey.shade600,
+                                    child: CircleAvatar(                                        
+                                      backgroundColor: Colors.white,
+                                      radius: 25,
+                                      child:Icon(Icons.person, size:40, color: Colors.grey.shade600,)
                                     ),
-                                  Padding(padding:EdgeInsets.only(top: 10)),
-                                  Text(name, style: TextStyle(color: Colors.grey.shade800, fontSize: 23, fontWeight: FontWeight.bold),),
-                                  Text(email, style: TextStyle(color: Colors.grey.shade900, fontSize: 16),)
+                                  ),
                                 ],
                               ),
                               Padding(padding:EdgeInsets.only(top: 10)),
@@ -73,7 +78,7 @@ class CurvePainter extends CustomPainter{
     Paint paint = Paint();
       path.lineTo(size.width, 0) ;
     path.lineTo(size.width, size.height/2) ;
-    paint.color = Color.fromRGBO(224, 222,223, 1);
+    paint.color = Color.fromRGBO(244, 244,244, 1);
     canvas.drawPath(path, paint);
     path.close();
 

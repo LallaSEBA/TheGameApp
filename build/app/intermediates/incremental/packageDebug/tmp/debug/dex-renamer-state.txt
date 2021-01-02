@@ -1,4 +1,4 @@
-#Thu Dec 31 18:32:46 GMT+01:00 2020
-base.0=E\:\\_Flutter\\shaths_app_thegame\\shaths_app_thegame\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Sat Jan 02 18:03:36 GMT+01:00 2021
+base.0=E\:\\_Flutter\\shaths_app_thegame\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
