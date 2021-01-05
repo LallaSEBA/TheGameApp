@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'const.dart';
 import 'countries.dart';
-
 
 class Fillup extends StatefulWidget{
   @override
@@ -130,34 +130,43 @@ addPhoneNumber(){
 }
    Widget decoratedTextField(String hint, double fontSize, TextEditingController controller,  {TextAlign align=TextAlign.center,TextInputType type=null, int length=null } ){
      double radius = length!=1 ? 11 : 9;
-     return  Container(
+     return  Container(       
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: cGreyL,
+            blurRadius:7,
+            offset: const Offset(3, 5),
+          ),
+        ],
+      ),
        height: 50,
        child: TextField(    
                     controller : controller,  
                     textAlign: align,
                     textAlignVertical: TextAlignVertical.center,
-                    style: TextStyle(fontSize:fontSize),
+                    style: TextStyle(fontSize:fontSize, color: cBlack),
                     keyboardType: type == null ? TextInputType.text : type,                   
                     maxLength: length == null ? null : length,
                     
                       
                     decoration: InputDecoration(
-                      contentPadding: length!=1 ? EdgeInsets.only(top:15.0, right: 6):EdgeInsets.only(top:0, left: 2),
+                      contentPadding: length!=1 ? EdgeInsets.only(top:17.0, right: 6):EdgeInsets.only(top:0, left: 2),
                       filled: true,
-                      fillColor: Colors.grey[200],
+                      fillColor: cGreyF,
                       hintText: hint,
                       counterText: '',
-                      hintStyle: TextStyle(fontSize:13),
+                      hintStyle: TextStyle(fontSize:13, color:cGreyT ),
                       disabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color:Colors.grey[200]),
+                        borderSide: BorderSide(color:cGreyB),
                         borderRadius:BorderRadius.circular(radius),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color:Colors.grey[200]),
+                        borderSide: BorderSide(color:cGreyB),
                         borderRadius:BorderRadius.circular(radius),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color:Colors.grey[200]),
+                        borderSide: BorderSide(color:cGreyB),
                         borderRadius:BorderRadius.circular(radius),
                       )
                     ),
@@ -171,386 +180,339 @@ addPhoneNumber(){
                   text, 
                   textAlign: TextAlign.right,
                     style:TextStyle(
+                      color: cBlack,
                       fontSize: fntSize==null? 20 : fntSize,
                       fontWeight: FontWeight.bold
                     ),
                   ),
      );
    }
+   comboBox(String txt, double wdth){
+     return  Material(
+                shadowColor: cGreyL,
+                color: cGreyF,
+                borderRadius: BorderRadius.all(Radius.circular(11.0)),
+                elevation: 5,
+                child: Container(
+                    padding: const EdgeInsets.only(left:3.0),
+                  width: wdth,
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton(iconEnabledColor: cBlack,
+                                    hint:  Align(                                              
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                              txt,
+                                              style: TextStyle(color: cGreyT, fontSize: 14),
+                                            )),
+                                    value: _selectedYear,
+                                    items: drpYearItem, 
+                                    onChanged: _chagedYear
+                              ),
+                  ),
+                ),
+              );
+   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,        
-        backgroundColor: Colors.white,
-        
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(left:20, right: 20, bottom: 30),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children:<Widget>[
-              Text(
-                   "املأ", 
-                    textAlign: TextAlign.left,
-                    style:TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold
-                    ),
-                  ),
-              Padding(padding: EdgeInsets.only(top:3)),
-              Text(
-                   "المستند للاستمرار", 
-                    textAlign: TextAlign.left,
-                   style:TextStyle(
-                      fontSize: 18,
-                   ),
-                  ),
-              Padding(padding: EdgeInsets.only(top:10)),
-              Expanded(
-                  child: SingleChildScrollView(
-                  padding: const EdgeInsets.only(top:40.0),
+    return Scaffold(      
+      body: SingleChildScrollView(
+              child: Stack(
+                children: <Widget>[
+                      Container(height:1550,
+                       decoration: new BoxDecoration(image: DecorationImage(image: AssetImage("assets/image/u7.JPG"), fit: BoxFit.fill)),
+                      ),
+                  Padding(padding: const EdgeInsets.only(top:110, left:20, right: 20),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: <Widget>[
-                    inputTitle (" اسمك الكامل"),                     
-                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children:<Widget>[
-                      Flexible(
-                        child: decoratedTextField('الاسم الأول', 13, _fName, align:TextAlign.right),
-                      ),
-                      Padding(padding: EdgeInsets.only(left:10)),                      
-                      Flexible(
-                        child: decoratedTextField('الاسم الثاني', 13,_sName, align: TextAlign.right),
-                      )
-                    ]),
-                    Padding(padding: EdgeInsets.only(bottom:10)),
-                    Row(
-                      children:<Widget>[
-                      Flexible(
-                        child: decoratedTextField('الاسم الثالث', 13,_tName, align:TextAlign.right),
-                      ),
-                      Padding(padding: EdgeInsets.only(left:10)),                      
-                      Flexible(
-                        child: decoratedTextField('الاسم الرابع', 13, _rName, align: TextAlign.right),
-                      )
-                    ]),
-                    Padding(padding: EdgeInsets.only(bottom:40)),                    
-                    inputTitle ("الرقم الوطني"), 
-                    Row(
-                      children:<Widget>[
-                      Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,_id1, type:TextInputType.number ,length:1)),
-                      ),
-                      Padding(padding: EdgeInsets.only(left:5)),
-                      Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,_id2, type:TextInputType.number ,length:1)),
-                      ),
-                      Padding(padding: EdgeInsets.only(left:5)),
-                      Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id3, type:TextInputType.number ,length:1)),
-                      ),
-                      Padding(padding: EdgeInsets.only(left:5)),
-                      Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id4, type:TextInputType.number ,length:1)),
-                      ),
-                      Padding(padding: EdgeInsets.only(left:5)),
-                      Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id5, type:TextInputType.number ,length:1)),
-                      ),
-                      Padding(padding: EdgeInsets.only(left:5)),
-                      Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id6, type:TextInputType.number ,length:1)),
-                      ),
-                      Padding(padding: EdgeInsets.only(left:5)),
-                      Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id7, type:TextInputType.number ,length:1)),
-                      ),
-                      Padding(padding: EdgeInsets.only(left:5)),
-                      Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id8, type:TextInputType.number ,length:1)),
-                      ),
-                      Padding(padding: EdgeInsets.only(left:5)),
-                      Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,  _id9, type:TextInputType.number ,length:1)),
-                      ),
-                      Padding(padding: EdgeInsets.only(left:5)),
-                      Flexible(
-                        child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id10, type:TextInputType.number ,length:1)),
-                      ),
-                      Padding(padding: EdgeInsets.only(left:5)),
-                    ]),
+                        Container(
+                          height: 45,
+                          padding: EdgeInsets.only(left:3),
+                          child: Text(
+                               "املأ", 
+                                textAlign: TextAlign.left,
+                              
+                                style:TextStyle(
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold,
+                                  color: cWhite,
+                                ),
+                              ),
+                        ),
+                        //Padding(padding: EdgeInsets.only(top:3)),
+                        Container(
+                          child: Text(
+                              "المستند للاستمرار", 
+                              textAlign: TextAlign.left,
+                              style:TextStyle(
+                                  fontSize: 18,
+                                  color: cWhite
+                              ),
+                              ),
+                        ),
+                        Padding(padding: EdgeInsets.only(top:80)),
+                        inputTitle (" اسمك الكامل"),                     
+                        Row(
+                          children:<Widget>[
+                          Flexible(
+                            child: decoratedTextField('الاسم الأول', 13, _fName, align:TextAlign.right),
+                          ),
+                          Padding(padding: EdgeInsets.only(left:10)),                      
+                          Flexible(
+                            child: decoratedTextField('الاسم الثاني', 13,_sName, align: TextAlign.right),
+                          )
+                        ]),
+                        Padding(padding: EdgeInsets.only(bottom:10)),
+                        Row(
+                          children:<Widget>[
+                          Flexible(
+                            child: decoratedTextField('الاسم الثالث', 13,_tName, align:TextAlign.right),
+                          ),
+                          Padding(padding: EdgeInsets.only(left:10)),                      
+                          Flexible(
+                            child: decoratedTextField('الاسم الرابع', 13, _rName, align: TextAlign.right),
+                          )
+                        ]),
+                        Padding(padding: EdgeInsets.only(bottom:40)),                    
+                        inputTitle ("الرقم الوطني"), 
+                        Row(
+                          children:<Widget>[
+                          Flexible(
+                            child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,_id1, type:TextInputType.number ,length:1)),
+                          ),
+                          Padding(padding: EdgeInsets.only(left:5)),
+                          Flexible(
+                            child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,_id2, type:TextInputType.number ,length:1)),
+                          ),
+                          Padding(padding: EdgeInsets.only(left:5)),
+                          Flexible(
+                            child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id3, type:TextInputType.number ,length:1)),
+                          ),
+                          Padding(padding: EdgeInsets.only(left:5)),
+                          Flexible(
+                            child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id4, type:TextInputType.number ,length:1)),
+                          ),
+                          Padding(padding: EdgeInsets.only(left:5)),
+                          Flexible(
+                            child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id5, type:TextInputType.number ,length:1)),
+                          ),
+                          Padding(padding: EdgeInsets.only(left:5)),
+                          Flexible(
+                            child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id6, type:TextInputType.number ,length:1)),
+                          ),
+                          Padding(padding: EdgeInsets.only(left:5)),
+                          Flexible(
+                            child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id7, type:TextInputType.number ,length:1)),
+                          ),
+                          Padding(padding: EdgeInsets.only(left:5)),
+                          Flexible(
+                            child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id8, type:TextInputType.number ,length:1)),
+                          ),
+                          Padding(padding: EdgeInsets.only(left:5)),
+                          Flexible(
+                            child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13,  _id9, type:TextInputType.number ,length:1)),
+                          ),
+                          Padding(padding: EdgeInsets.only(left:5)),
+                          Flexible(
+                            child: Container(height: (MediaQuery.of(context).size.width-27)/10, child: decoratedTextField('', 13, _id10, type:TextInputType.number ,length:1)),
+                          ),
+                          Padding(padding: EdgeInsets.only(left:5)),
+                        ]),
 
-                    Padding(padding: EdgeInsets.only(bottom:40)),  
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children:<Widget>[                                                                       
+                        Padding(padding: EdgeInsets.only(bottom:40)),  
                         Row(
-                          children: <Widget>[
-                            Container(
-                              width: 35,
-                              height: 35,
-                              child: IconButton(alignment:Alignment.center, padding: EdgeInsets.only(right:1.5), icon: Icon( MdiIcons.genderMale, size: 24, color:Colors.grey.shade600),
-                                       onPressed: (){setState(() {genderMale=1;});},),
-                              decoration:BoxDecoration(
-                                  color: genderMale == 1 && genderMale != null ?  Colors.grey[300] : Colors.white,
-                                  border: new Border.all(
-                                      width: 1.25,
-                                      color:  Colors.grey[300]),
-                                  borderRadius: const BorderRadius.all(const Radius.circular(100))
-                              )
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children:<Widget>[                                                                       
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  width: 35,
+                                  height: 35,
+                                  child: IconButton(alignment:Alignment.center, padding: EdgeInsets.only(right:1.5), 
+                                                   icon: Icon( MdiIcons.genderMale, size: 24, 
+                                                   color:genderMale == 1 && genderMale != null ?  cGreen: cWhite),
+                                           onPressed: (){setState(() {genderMale=1;});},),
+                                  decoration:BoxDecoration(
+                                      color: genderMale == 1 && genderMale != null ?  cWhite: cGreen,
+                                      border: new Border.all(
+                                          width: 1.25,
+                                          color:  cGreen),
+                                      borderRadius: const BorderRadius.all(const Radius.circular(100)),                                      
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: cGreen,
+                                          blurRadius:5,
+                                          offset: const Offset(0, 2),
+                                        ),
+                                      ],
+                                  )
+                                ),
+                                Padding(
+                                 padding: const EdgeInsets.only(top:5, left:8.0),
+                                 child: inputTitle ("ذكر", fntSize: 16),
+                                ),                             
+                              ],
+                            ),                  
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  width: 35,
+                                  height: 35,
+                                  child: IconButton(alignment:Alignment.center, padding: EdgeInsets.only(right:1.5), 
+                                                    icon: Icon( MdiIcons.genderFemale, size: 24,                  
+                                                    color:genderMale == 0 && genderMale != null ?  cPinck: cWhite),
+                                           onPressed: (){setState(() {genderMale=0;});},),
+                                  decoration:BoxDecoration(
+                                      color: genderMale == 0 && genderMale != null  ? cWhite : cPinck,
+                                      border: new Border.all(
+                                          width: 1.25,
+                                          color:  cPinck),
+                                      borderRadius: const BorderRadius.all(const Radius.circular(100)), 
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: cPinck,
+                                          blurRadius:5,
+                                          offset: const Offset(0, 2),
+                                        ),
+                                      ],
+                                  )
+                                ),
+                              Padding(
+                                padding: const EdgeInsets.only(top:5, left:8.0),
+                                child: inputTitle ("أنثى", fntSize: 16),
+                              ),                             
+                              ],
                             ),
-                            Padding(
-                             padding: const EdgeInsets.only(top:5, left:8.0),
-                             child: inputTitle ("ذكر", fntSize: 16),
-                            ),                             
-                          ],
-                        ),                  
+                            
+                            inputTitle ("الجنس"), 
+                          ]
+                        ),
+                        
+                        Padding(padding: EdgeInsets.only(bottom:40)),  
+                        inputTitle ("تاريخ الميلاد"), 
                         Row(
-                          children: <Widget>[
-                            Container(
-                              width: 35,
-                              height: 35,
-                              child: IconButton(alignment:Alignment.center, padding: EdgeInsets.only(right:1.5), icon: Icon( MdiIcons.genderFemale, size: 24, color:Colors.grey.shade600),
-                                       onPressed: (){setState(() {genderMale=0;});},),
-                              decoration:BoxDecoration(
-                                  color: genderMale == 0 && genderMale != null  ? Colors.grey[300] : Colors.white,
-                                  border: new Border.all(
-                                      width: 1.25,
-                                      color:  Colors.grey[300]),
-                                  borderRadius: const BorderRadius.all(const Radius.circular(100))
-                              )
-                            ),
-                          Padding(
-                            padding: const EdgeInsets.only(top:5, left:8.0),
-                            child: inputTitle ("أنثى", fntSize: 16),
-                          ),                             
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[                            
+                               comboBox( "اليوم", MediaQuery.of(context).size.width*1.22/6),                           
+                               comboBox( "الشهر", MediaQuery.of(context).size.width*2/6),   
+                               comboBox("السنة", MediaQuery.of(context).size.width*1.5/6),   
                           ],
                         ),
                         
-                        inputTitle ("الجنس"), 
+                        Padding(padding: EdgeInsets.only(bottom:40)),  
+                        inputTitle ("رقم الهاتف"), 
+                         Row(
+                            mainAxisAlignment : MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                           
+                             Stack(
+                               children: <Widget>[
+                                 Material(
+                                   color: cGreyF,
+                                   borderRadius: BorderRadius.all(Radius.circular(11.0)),
+                                   elevation: 5,
+                                   shadowColor: cGreyL,
+                                   child: Container(
+                                           padding: EdgeInsets.only(left:25),
+                                           child: DropdownButtonHideUnderline(
+                                                 child: DropdownButton(
+                                                         //  isExpanded: true,
+                                                           iconSize: 0,
+                                                           value: _selectedPhone,
+                                                           items: drpPhoneItem, 
+                                                           onChanged: _chagednbPhone
+                                                     ),
+                                           ),
+                                         ),
+                                 ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: 13.0),
+                                    child: Icon(
+                                      Icons.arrow_drop_down,
+                                      color: cBlack,
+                                      size: 24.0,
+                                    ),),
+                               ],
+                             ),
+                           
+                          Padding(padding: EdgeInsets.only(left:8)),  
+                          Expanded(child: decoratedTextField('', 13, _phone, type:TextInputType.number, length: 15))
+                        ],),
+                        
+                        Padding(padding: EdgeInsets.only(bottom:40)),  
+                        inputTitle ("العنوان"), 
+                        decoratedTextField('', 13, _adress),
+                        Padding(padding: EdgeInsets.only(bottom:40)),  
+                        inputTitle ("المحافظة"), 
+                        decoratedTextField('', 13, _mohafadha),
+                        Padding(padding: EdgeInsets.only(bottom:40)),  
+                        inputTitle ("اللواء"), 
+                        decoratedTextField('', 13, _liwa),
+                        Padding(padding: EdgeInsets.only(bottom:40)),  
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: RaisedButton(
+                            color: cBlue,
+                            padding: EdgeInsets.only(top:2, bottom: 2),
+                            elevation: 0,
+                           /* shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100),
+                              side:BorderSide(color: Color.fromRGBO(174, 174, 174, 1),)
+                            ),*/
+                            child: Text(  "تسجيل", 
+                                  textAlign: TextAlign.center,
+                                    style:TextStyle(
+                                      fontSize: 22,
+                                      color:cWhite,
+                                    ),
+                                  ),
+                            onPressed: (){},
+                          ),
+                        ),
+                        Padding(padding: EdgeInsets.only(bottom:40)),  
+                         Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         crossAxisAlignment: CrossAxisAlignment.start,
+                         children: <Widget>[
+                          Transform.rotate(
+                              angle: 180 * 3.14 / 180, 
+                              child: IconButton(padding: EdgeInsets.only(right:18,top: 0), icon: Icon(Icons.exit_to_app, size: 55,color: cBlack,), onPressed: null),
+                          ),
+                          Container(
+                              child: Column(
+                              children: <Widget>[
+                                Text( "هل لديك حساب؟", 
+                                  textAlign: TextAlign.right,
+                                  style:TextStyle(
+                                    fontSize: 14,
+                                    color: cGreyT,
+                                  ),
+                                ), 
+                                FlatButton(
+                                  child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Text(
+                                    "تسجيل الدخول",
+                                    style:TextStyle(                                  
+                                    decoration: TextDecoration.underline,
+                                    fontSize: 14,
+                                    color: cBlue),
+                                    textAlign: TextAlign.right
+                                  ),
+                                          ),
+                                  onPressed: (){}
+                                ,)
+                            ],),
+                          ),
+                         ],
+                         ),
+                        //Padding(padding: EdgeInsets.only(top:60))          
                       ]
                     ),
-                    
-                    Padding(padding: EdgeInsets.only(bottom:40)),  
-                    inputTitle ("تاريخ الميلاد"), 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        DecoratedBox(
-                          decoration: ShapeDecoration(
-                          color: Colors.grey[200],
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(width: 1.0, style: BorderStyle.solid, color: Colors.grey[200]),
-                            borderRadius: BorderRadius.all(Radius.circular(11.0)),
-                          ),
-                          ),
-                          child: Container(
-                                  width: MediaQuery.of(context).size.width/6+5,
-                                  child: DropdownButtonHideUnderline(
-                                        child: DropdownButton(
-                                                  hint:  Padding(
-                                                    padding: const EdgeInsets.only(left:3.0),
-                                                    child: Align(                                              
-                                                            alignment: Alignment.centerLeft,
-                                                            child: Text(
-                                                              "اليوم",
-                                                              style: TextStyle(color: Colors.grey, fontSize: 14),
-                                                            )),
-                                                  ),
-                                                  value: _selectedDay,
-                                                  items: drpDayItem, 
-                                                  onChanged: _chagedDay
-                                            ),
-                                  ),
-                                )
-                       ),
-                       
-                        DecoratedBox(
-                          decoration: ShapeDecoration(
-                          color: Colors.grey[200],
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(width: 1.0, style: BorderStyle.solid, color: Colors.grey[200]),
-                            borderRadius: BorderRadius.all(Radius.circular(11.0)),
-                          ),
-                          ),
-                          child: Container(
-                                  width: MediaQuery.of(context).size.width*2/6,
-                                  child: DropdownButtonHideUnderline(
-                                        child: DropdownButton(
-                                                  hint:  Padding(
-                                                    padding: const EdgeInsets.only(left:3.0),
-                                                    child: Align(                                              
-                                                            alignment: Alignment.centerLeft,
-                                                            child: Text(
-                                                              "الشهر",
-                                                              style: TextStyle(color: Colors.grey, fontSize: 14),
-                                                            )),
-                                                  ),
-                                                  value: _selectedMth,
-                                                  items: drpMthItem, 
-                                                  onChanged: _chagedMth
-                                            ),
-                                  ),
-                                )
-                        ),
-                        DecoratedBox(
-                          decoration: ShapeDecoration(
-                          color: Colors.grey[200],
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(width: 1.0, style: BorderStyle.solid, color: Colors.grey[200]),
-                            borderRadius: BorderRadius.all(Radius.circular(11.0)),
-                          ),
-                          ),
-                          child: Container(
-                                  width: MediaQuery.of(context).size.width*2/6,
-                                  child: DropdownButtonHideUnderline(
-                                        child: DropdownButton(
-                                                  hint:  Padding(
-                                                    padding: const EdgeInsets.only(left:3.0),
-                                                    child: Align(                                              
-                                                            alignment: Alignment.centerLeft,
-                                                            child: Text(
-                                                              "السنة",
-                                                              style: TextStyle(color: Colors.grey, fontSize: 14),
-                                                            )),
-                                                  ),
-                                                  value: _selectedYear,
-                                                  items: drpYearItem, 
-                                                  onChanged: _chagedYear
-                                            ),
-                                  ),
-                                )
-                        ),
-                      ],
-                    ),
-                    
-                    Padding(padding: EdgeInsets.only(bottom:40)),  
-                    inputTitle ("رقم الهاتف"), 
-                     Row(
-                        mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                       
-                         Stack(
-                           children: <Widget>[
-                             DecoratedBox(
-                              decoration: ShapeDecoration(
-                              color: Colors.grey[200],
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(width: 1.0, style: BorderStyle.solid, color: Colors.grey[200]),
-                                borderRadius: BorderRadius.all(Radius.circular(11.0)),
-                              ),
-                              ),
-                              child: Container(
-                                      padding: EdgeInsets.only(left:25),
-                                      child: DropdownButtonHideUnderline(
-                                            child: DropdownButton(
-                                                    //  isExpanded: true,
-                                                      iconSize: 0,
-                                                      hint:  Padding(
-                                                        padding: const EdgeInsets.only(left:3.0),
-                                                        child: Align(                                              
-                                                                alignment: Alignment.centerLeft,
-                                                                child: Text(
-                                                                  "",
-                                                                  style: TextStyle(color: Colors.grey, fontSize: 14),
-                                                                )),
-                                                      ),
-                                                      value: _selectedPhone,
-                                                      items: drpPhoneItem, 
-                                                      onChanged: _chagednbPhone
-                                                ),
-                                      ),
-                                    )
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(top: 13.0),
-                                child: Icon(
-                                  Icons.arrow_drop_down,
-                                  color: Colors.grey.shade800,
-                                  size: 24.0,
-                                ),),
-                           ],
-                         ),
-                       
-                      Padding(padding: EdgeInsets.only(left:8)),  
-                      Expanded(child: decoratedTextField('', 13, _phone, type:TextInputType.number, length: 15))
-                    ],),
-                    
-                    Padding(padding: EdgeInsets.only(bottom:40)),  
-                    inputTitle ("العنوان"), 
-                    decoratedTextField('', 13, _adress),
-                    Padding(padding: EdgeInsets.only(bottom:40)),  
-                    inputTitle ("المحافظة"), 
-                    decoratedTextField('', 13, _mohafadha),
-                    Padding(padding: EdgeInsets.only(bottom:40)),  
-                    inputTitle ("اللواء"), 
-                    decoratedTextField('', 13, _liwa),
-                    Padding(padding: EdgeInsets.only(bottom:40)),  
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      child: RaisedButton(
-                        color: Color.fromRGBO(174, 174, 174, 1),
-                        padding: EdgeInsets.only(top:2, bottom: 2),
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(100),
-                          side:BorderSide(color: Color.fromRGBO(174, 174, 174, 1),)
-                        ),
-                        child: Text(  "تسجيل", 
-                              textAlign: TextAlign.center,
-                                style:TextStyle(
-                                  fontSize: 22,
-                                  color: Color.fromRGBO(137, 137, 137, 1),
-                                ),
-                              ),
-                        onPressed: (){},
-                      ),
-                    ),
-                    Padding(padding: EdgeInsets.only(bottom:40)),  
-                   Row(
-                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                     crossAxisAlignment: CrossAxisAlignment.start,
-                     children: <Widget>[
-                      Transform.rotate(
-                          angle: 180 * 3.14 / 180, 
-                          child: IconButton(padding: EdgeInsets.only(right:18,top: 0), icon: Icon(Icons.exit_to_app, size: 55,), onPressed: null),
-                      ),
-                      Container(
-                          child: Column(
-                          children: <Widget>[
-                            Text( "هل لديك حساب", 
-                              textAlign: TextAlign.right,
-                              style:TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey
-                              ),
-                            ), 
-                            FlatButton(
-                              child: Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(
-                                "تسجيل الدخول",
-                                style:TextStyle(                                  
-                                decoration: TextDecoration.underline,
-                                fontSize: 12,
-                                color: Colors.grey),
-                                textAlign: TextAlign.right
-                              ),
-                                      ),
-                              onPressed: (){}
-                            ,)
-                        ],),
-                      ),
-                     ],
-                   )
-                  ],)
-                ),
-              ),            
-            ]
+            ),
+                ],
+              ),
           ),
-      ),
       );
   }
 

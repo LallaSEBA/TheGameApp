@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shaths_app_thegame/received.dart';
 
-import 'drawer.dart';
+import 'const.dart';
+import 'drawerAdm.dart';
+import 'navigationBar.dart';
 
 class VerifyYourAccount extends StatefulWidget {
   @override
@@ -22,13 +23,13 @@ class _VerifyYourAccountState extends State<VerifyYourAccount> {
                   controller: controller,
                   decoration: InputDecoration(
                     focusedBorder:UnderlineInputBorder(                                            
-                      borderSide: BorderSide( color:Colors.grey.shade600, width: 2)
+                      borderSide: BorderSide( color:cGreyL, width: 2)
                     ),
                     enabledBorder:UnderlineInputBorder(                                            
-                      borderSide: BorderSide( color:Colors.grey.shade600, width: 2)
+                      borderSide: BorderSide( color:cGreyL, width: 2)
                     ),
                     disabledBorder:UnderlineInputBorder(                                            
-                      borderSide: BorderSide( color:Colors.grey.shade600, width: 2)
+                      borderSide: BorderSide( color:cGreyL, width: 2)
                     )
                   ),
               ),
@@ -37,62 +38,68 @@ class _VerifyYourAccountState extends State<VerifyYourAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white, 
-                     elevation:0,
-                     iconTheme: IconThemeData(color: Colors.grey.shade600),),
-      endDrawer:  myDrawer(context,),
-
-      backgroundColor: Colors.white,
-      body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children:<Widget>[
-              Text( 'التحقق من حسابك', 
-                    textAlign: TextAlign.center,
-                      style:TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color:Colors.grey.shade600,
+            body: SingleChildScrollView(
+              child: Stack(
+                children: <Widget>[
+                  Image.asset("assets/image/u4.JPG",fit:BoxFit.fitWidth , 
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height,), 
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:<Widget>[
+                      Padding(padding: EdgeInsets.only(bottom:140)), 
+                      Text( 'أكد حسابك', 
+                            textAlign: TextAlign.center,
+                              style:TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: cBlueD,
+                              ),
+                            ),
+                      Padding(padding: EdgeInsets.only(bottom:10)),  
+                      Text( 'أدخل رمز التحقق المرسل إلى حيابك الإلكتروني لتأكيد حسابك', 
+                            textAlign: TextAlign.center,
+                              style:TextStyle(
+                                fontSize: 12,
+                                color: cBlack,
+                                height: 1.5,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                      Padding(padding: EdgeInsets.only(bottom:60)),  
+                      Text( 'رمز التحقق', 
+                            textAlign: TextAlign.center,
+                              style:TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color:cBlack,
+                              ),
+                            ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children:<Widget>[
+                          digitField(_id1),
+                          digitField(_id2),
+                          digitField(_id3),
+                        ]
                       ),
-                    ),
-              Padding(padding: EdgeInsets.only(bottom:15)),  
-              Text( 'قمنا بإرسال 3 رموز لبريدك، قم بإدخالها لتتحقق', 
-                    textAlign: TextAlign.center,
-                      style:TextStyle(
-                        fontSize: 12,
-                        color:Colors.grey,
-                        height: 1.5
-                      ),
-                    ),
-              Padding(padding: EdgeInsets.only(bottom:50)),  
-              Text( 'رمز التحقق', 
-                    textAlign: TextAlign.center,
-                      style:TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color:Colors.grey.shade600,
-                      ),
-                    ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children:<Widget>[
-                  digitField(_id1),
-                  digitField(_id2),
-                  digitField(_id3),
-                ]
+                    Padding(padding: EdgeInsets.only(bottom:50)),  
+                    RaisedButton(
+                      elevation: 5,
+                      color: cBlue,
+                      child: Text(
+                        'إرسال',
+                         style: TextStyle(color: cWhite, fontSize: 18),
+                        ), 
+                      onPressed: (){},)
+              ]),
+                ],
               ),
-            Padding(padding: EdgeInsets.only(bottom:30)),  
-            RaisedButton(
-              color: Color.fromRGBO(174, 174, 174, 1),
-              child: Text(
-                'إرسال',
-                 style: TextStyle(color: Colors.grey.shade600, fontSize: 18),
-                ), 
-              onPressed: (){},)
-      ]),
-        ),
- //     ),
+            ),
+       //     ),
+            
+          );
+        }
       
-    );
-  }
+        drawerAdmin(BuildContext context) {}
 }
