@@ -2,24 +2,20 @@ import 'package:flutter/material.dart';
 
 import 'const.dart';
 
-class Done extends StatefulWidget {
+class Done extends StatelessWidget {
   final String screenType;
 
-  const Done({Key key, this.screenType}) : super(key: key);
-  @override
-  _Done createState() => _Done();
-}
-
-class _Done extends State<Done> {
   String titleTxt;
   String paragphTxt;
   String btnTxt;
   double fntSize = 20;
   double pdn;
-  @override
-  void initState() {
+
+  Done( {Key key, this.screenType}) : super(key: key);
+
+  void getVals() {
    
-   switch  (widget.screenType){
+   switch  (screenType){
      case 'Done':{
       titleTxt   = "عمل رائع" ;
       paragphTxt =  "تمت الإجابة على الطلب \n عد إلى الصفحة الرئيسة للرد على طلب آخر";
@@ -44,11 +40,11 @@ class _Done extends State<Done> {
      }
      break;
    }
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    getVals();
     return Scaffold(      
             body: Stack(
                   children: <Widget>[

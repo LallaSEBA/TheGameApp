@@ -4,12 +4,7 @@ import 'const.dart';
 import 'drawerAdm.dart';
 import 'navigationBar.dart';
 
-class VerifyYourAccount extends StatefulWidget {
-  @override
-  _VerifyYourAccountState createState() => _VerifyYourAccountState();
-}
-
-class _VerifyYourAccountState extends State<VerifyYourAccount> {
+class VerifyYourAccount extends StatelessWidget {
   
    var _id1  = TextEditingController();
    var _id2  = TextEditingController();
@@ -21,7 +16,12 @@ class _VerifyYourAccountState extends State<VerifyYourAccount> {
                 padding: EdgeInsets.only(left:20),
                 child: TextField(
                   controller: controller,
+                  textAlign: TextAlign.center,
+                  textAlignVertical: TextAlignVertical.center,
+                  maxLength: 1,
+                  cursorColor: Colors.transparent,
                   decoration: InputDecoration(
+                    counterText: "",
                     focusedBorder:UnderlineInputBorder(                                            
                       borderSide: BorderSide( color:cGreyL, width: 2)
                     ),
@@ -91,7 +91,9 @@ class _VerifyYourAccountState extends State<VerifyYourAccount> {
                         'إرسال',
                          style: TextStyle(color: cWhite, fontSize: 18),
                         ), 
-                      onPressed: (){},)
+                      onPressed: (){
+                        print("digit1: ${_id1.text}, ${_id2.text}, ${_id3.text}");
+                      },)
               ]),
                 ],
               ),
@@ -100,6 +102,4 @@ class _VerifyYourAccountState extends State<VerifyYourAccount> {
             
           );
         }
-      
-        drawerAdmin(BuildContext context) {}
 }
