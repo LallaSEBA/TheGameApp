@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:shaths_app_thegame/fillup.dart';
-import 'package:shaths_app_thegame/test.dart';
-import 'package:shaths_app_thegame/verify%20_your_account.dart';
-import 'done.dart';
+import 'package:shaths_app_thegame/screens/fillup.dart';
+import 'package:shaths_app_thegame/screens/home.dart';
+import 'package:shaths_app_thegame/screens/login.dart';
+import 'package:shaths_app_thegame/screens/loginadmin.dart';
+import 'package:shaths_app_thegame/screens/signup.dart';
+import 'package:shaths_app_thegame/screens/verify%20_your_account.dart';
+import 'screens/done.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +14,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home:Done(screenType:""),
+      home:Home(isAdmin:false),
+      routes: {
+       '/fillUp'   : (BuildContext context)=>Fillup(),
+       '/login'    : (BuildContext context)=>LoginPage(),
+       '/loginAdm' : (BuildContext context)=>LoginAdminPage(),
+       '/homeUser' : (BuildContext context)=>Home(isAdmin:false),
+       '/homeAdm'  : (BuildContext context)=>Home(isAdmin:true),
+       '/done'     : (BuildContext context)=>Done(screenType:'youDidIt'),
+      },
     );
   
   }
