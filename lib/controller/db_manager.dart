@@ -106,62 +106,28 @@
     return status;
    }
 
+  Future<User> getData() async{
+    //var value = await readToken();
+    String myUrl="$url/me" ;
 
-    Future<User> getData() async{
-     var value = await readToken();
-     String myUrl="$url/me" ;
-
-     final response = await http.get(myUrl,
-            headers: {
-              'Accept':'application/json',
-              'Authorization' : 'bearer ${user.token}'
-              },            
-            );
-      //print(json.decode(response.body)["data"]);
-      return json.decode(response.body);
-
-   }
-
-    deletetData(int id)async {
-     var value = await readToken();
-     String myUrl="$url/products/$id";
-     final response = http.delete(myUrl,
-            headers: {
-              'Accept':'application/json',
-              'Authorization' : 'Bearer $value'
-              },          
-            ).then((response){print('status: ${response.statusCode}, body:${response.body}');});
-   }
-
-   addData(String name, String price)async {
-     var value = await readToken();
-     String myUrl="$url/products";
-     final response = http.post(myUrl,
-            headers: {
-              'Accept':'application/json',
-              'Authorization' : 'bearer $value'
-              }, 
-            body:{
-              'name':name,
-              'price':price
-            }         
-            ).then((response){print('status: ${response.statusCode}, body:${response.body}');});
-   }
-
-    editData(String id, String name, String price)async {
-     var value = await readToken();
-     String myUrl="$url/products/$id";
-     final response = http.put(myUrl,
-            headers: {
-              'Accept':'application/json',
-              'Authorization' : 'Bearer $value'
-              }, 
-            body:{
-              'name':name,
-              'price':price
-            }         
-            ).then((response){print('status: ${response.statusCode}, body:${response.body}');});
-   }
+    final response = await http.get(myUrl,
+          headers: {
+            'Accept':'application/json',
+            'Authorization' : 'bearer ${user.token}'
+            },            
+          );
+    var data = json.decode(response.body);
+    status =  data['success'];
+    var result;
+    if (status){
+      result =json.decode( data['data']);
+      print('data : ${data['error']}');
+    } else{
+      print('data : ${data['token']}');
+    }
+    return result;
+  }
+   
    _saveToken(String roken) async{
      final prefs = await SharedPreferences.getInstance();
      final key = 'token';

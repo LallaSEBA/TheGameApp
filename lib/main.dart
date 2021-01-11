@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home:Home(isAdmin:false),
+      home:SignUp(),
       routes: {
        '/fillUp'   : (BuildContext context)=>Fillup(),
        '/login'    : (BuildContext context)=>LoginPage(),
