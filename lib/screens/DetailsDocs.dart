@@ -1,15 +1,72 @@
 import 'package:flutter/material.dart';
-import '../widget/navigationBar.dart';
 
 class Myhome extends StatefulWidget {
-  DetailsDocs createState() => DetailsDocs();
+  DetailsHome createState() => DetailsHome();
 }
 
-class DetailsDocs extends State<Myhome> {
+class DetailsHome extends State<Myhome> {
+  static const List<String> langItems = const [
+    'En',
+    'Ar ',
+  ];
+
+  String langValue = langItems[0];
+
+  /// اللواء
+  static const List<String> lItems = const [
+    'اللواء',
+    'اللواء 1',
+    'اللواء 2',
+    'اللواء 3',
+  ];
+
+  String lValue = lItems[0];
+
+  ///المحافظة
+  static const List<String> mItems = const [
+    'المحافظة',
+    'المحافظة 1 ',
+    'المحافظة 2',
+    'المحافظة 3',
+  ];
+
+  String mValue = mItems[0];
+
+  ///القطاعات
+  static const List<String> sectionItems = const [
+    'القطاعات',
+    'الجمعيات',
+    'الأسرة و الحماية',
+    'سجل الجمعيات',
+    'الأشحاص ذوي الاعاقة و مراكزها',
+    'المكارم الملكية',
+    'الاحداث و الأمن المجتمعي',
+    'سوء تصرف موظف/مساعدات',
+    'التطور المؤسسي',
+    'عدم الاختصاص',
+    'تعزيز الانتاجية',
+    'وحدة التسول',
+    'الموارد البشرىة تعيينات',
+    'المساعدات',
+    'متفرقات',
+    'المساكن'
+  ];
+
+  String sectionValue = sectionItems[0];
+
+  /// type
+  static const List<String> typeItems = const [
+    'نوع الطلب',
+    'شكوى',
+    'ثناء',
+    'اقتراح',
+  ];
+
+  String typeValue = typeItems[0];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: navigationBar(isAdmin: false,),
       body: Container(
         child: SingleChildScrollView(
           child: Column(
@@ -28,7 +85,7 @@ class DetailsDocs extends State<Myhome> {
 
                 Padding(
                   padding: EdgeInsets.only(
-                      top: 90.0, bottom: 5.0, left: 5.0, right: 5.0),
+                      top: 90.0, bottom: 5.0, left: 20.0, right: 20.0),
                   child: Column(
                     // mainAxisAlignment: MainAxisAlignment.center,
                     // crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,7 +111,7 @@ class DetailsDocs extends State<Myhome> {
                                           20.0, 5.0, 20.0, 5.0),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10.0)),
+                                              BorderRadius.circular(10.0)),
                                       fillColor: Color(0xffF3F3F3),
                                       filled: true),
                                 ),
@@ -77,10 +134,10 @@ class DetailsDocs extends State<Myhome> {
                                   hintText: ' الرقم الوطني',
                                   hintStyle: TextStyle(fontSize: 14),
                                   contentPadding:
-                                  EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
+                                      EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
                                   border: OutlineInputBorder(
                                       borderRadius:
-                                      BorderRadius.circular(10.0)),
+                                          BorderRadius.circular(10.0)),
                                   fillColor: Color(0xffF3F3F3),
                                   filled: true),
                             ),
@@ -99,7 +156,7 @@ class DetailsDocs extends State<Myhome> {
                                 hintText: '  الاسم الكامل',
                                 hintStyle: TextStyle(fontSize: 14),
                                 contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
+                                    EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10.0)),
                                 fillColor: Color(0xffF3F3F3),
@@ -119,7 +176,7 @@ class DetailsDocs extends State<Myhome> {
                                 hintText: '  المنطقة',
                                 hintStyle: TextStyle(fontSize: 14),
                                 contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
+                                    EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10.0)),
                                 fillColor: Color(0xffF3F3F3),
@@ -128,210 +185,164 @@ class DetailsDocs extends State<Myhome> {
                         ),
                       ),
                       Container(
-                        child: Row(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
                           children: <Widget>[
-                            DecoratedBox(
-                              decoration: ShapeDecoration(
-                                color: Color(0xffF3F3F3),
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(
-                                    width: 1.0,
-                                    style: BorderStyle.solid,
-                                    color: Color(0XFFF3F3F3),
+                            Container(
+                              child: DecoratedBox(
+                                decoration: ShapeDecoration(
+                                  color: Color(0xffF3F3F3),
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                      width: 1.0,
+                                      style: BorderStyle.solid,
+                                      color: Color(0XFFF3F3F3),
+                                    ),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(11.0)),
                                   ),
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(11.0)),
                                 ),
-                              ),
-                              child: Container(
-                                height: 40.0,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.arrow_drop_down,
-                                    ),
-
-                                    //   Padding(
-                                    //   padding: EdgeInsets.all(5.0),
-                                    DropdownButtonHideUnderline(
-                                      child: DropdownButton<String>(
-                                        iconSize: 0,
-                                        items: [
-                                          DropdownMenuItem<String>(
-                                            value: "1",
-                                            child: Center(
-                                              child: Text(
-                                                "القطاعات",
-                                              ),
-                                            ),
-                                          ),
-                                          DropdownMenuItem<String>(
-                                            value: "2",
-                                            child: Center(
-                                              child: Text("القطاعات 1 "),
-                                            ),
-                                          ),
-                                          DropdownMenuItem<String>(
-                                            value: "3",
-                                            child: Center(
-                                              child: Text("القطاعات 2 "),
-                                            ),
-                                          ),
-                                          DropdownMenuItem<String>(
-                                            value: "4",
-                                            child: Center(
-                                              child: Text("القطاعات 3 "),
-                                            ),
-                                          ),
-                                        ],
-                                        onChanged: (_value) => {
-                                          print(_value.toString()),
-                                        },
-                                        hint: Text('القطاعات'),
-                                        value: "1",
+                                child: Container(
+                                  height: 40.0,
+                                  width: 250,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.arrow_drop_down,
                                       ),
-                                    ),
-                                    //  ),
-                                  ],
+                                      DropdownButtonHideUnderline(
+                                        child: DropdownButton<String>(
+                                          iconSize: 0,
+                                          value: sectionValue,
+                                          onChanged: (String text) {
+                                            setState(() {
+                                              sectionValue = text;
+                                            });
+                                          },
+                                          items: sectionItems
+                                              .map<DropdownMenuItem<String>>(
+                                                  (String text) {
+                                            return DropdownMenuItem<String>(
+                                              value: text,
+                                              child: Align(
+                                                alignment: Alignment.center,
+                                                child: Text(text),
+                                              ),
+                                            );
+                                          }).toList(),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                            Spacer(),
-                            DecoratedBox(
-                              decoration: ShapeDecoration(
-                                color: Color(0xffF3F3F3),
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(
-                                    width: 1.0,
-                                    style: BorderStyle.solid,
-                                    color: Color(0XFFF3F3F3),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Container(
+                              child: DecoratedBox(
+                                decoration: ShapeDecoration(
+                                  color: Color(0xffF3F3F3),
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                      width: 1.0,
+                                      style: BorderStyle.solid,
+                                      color: Color(0XFFF3F3F3),
+                                    ),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(11.0)),
                                   ),
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(11.0)),
                                 ),
-                              ),
-                              child: Container(
-                                height: 40.0,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.arrow_drop_down,
-                                    ),
-
-                                    //   Padding(
-                                    //   padding: EdgeInsets.all(5.0),
-                                    DropdownButtonHideUnderline(
-                                      child: DropdownButton<String>(
-                                        iconSize: 0,
-                                        items: [
-                                          DropdownMenuItem<String>(
-                                            value: "1",
-                                            child: Center(
-                                              child: Text(
-                                                "المحافظة",
-                                              ),
-                                            ),
-                                          ),
-                                          DropdownMenuItem<String>(
-                                            value: "2",
-                                            child: Center(
-                                              child: Text("المحافظة 1 "),
-                                            ),
-                                          ),
-                                          DropdownMenuItem<String>(
-                                            value: "3",
-                                            child: Center(
-                                              child: Text("المحافظة 2 "),
-                                            ),
-                                          ),
-                                          DropdownMenuItem<String>(
-                                            value: "4",
-                                            child: Center(
-                                              child: Text("المحافظة 3 "),
-                                            ),
-                                          ),
-                                        ],
-                                        onChanged: (_value) => {
-                                          print(_value.toString()),
-                                        },
-                                        hint: Text('المحافظة'),
-                                        value: "1",
+                                child: Container(
+                                  height: 40.0,
+                                  width: 250,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.arrow_drop_down,
                                       ),
-                                    ),
-                                    //  ),
-                                  ],
+
+                                      DropdownButtonHideUnderline(
+                                        child: DropdownButton<String>(
+                                          iconSize: 0,
+                                          value: mValue,
+                                          onChanged: (String text) {
+                                            setState(() {
+                                              mValue = text;
+                                            });
+                                          },
+                                          items: mItems
+                                              .map<DropdownMenuItem<String>>(
+                                                  (String text) {
+                                            return DropdownMenuItem<String>(
+                                              value: text,
+                                              child: Text(text),
+                                            );
+                                          }).toList(),
+                                        ),
+                                      ),
+                                      //  ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                            Spacer(),
-                            DecoratedBox(
-                              decoration: ShapeDecoration(
-                                color: Color(0xffF3F3F3),
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(
-                                    width: 1.0,
-                                    style: BorderStyle.solid,
-                                    color: Color(0XFFF3F3F3),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Container(
+                              child: DecoratedBox(
+                                decoration: ShapeDecoration(
+                                  color: Color(0xffF3F3F3),
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                      width: 1.0,
+                                      style: BorderStyle.solid,
+                                      color: Color(0XFFF3F3F3),
+                                    ),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(11.0)),
                                   ),
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(11.0)),
                                 ),
-                              ),
-                              child: Container(
-                                height: 40.0,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.arrow_drop_down,
-                                    ),
-
-                                    //   Padding(
-                                    //   padding: EdgeInsets.all(5.0),
-                                    DropdownButtonHideUnderline(
-                                      child: DropdownButton<String>(
-                                        iconSize: 0,
-                                        items: [
-                                          DropdownMenuItem<String>(
-                                            value: "1",
-                                            child: Center(
-                                              child: Text(
-                                                "اللواء",
-                                              ),
-                                            ),
-                                          ),
-                                          DropdownMenuItem<String>(
-                                            value: "2",
-                                            child: Center(
-                                              child: Text("اللواء 1 "),
-                                            ),
-                                          ),
-                                          DropdownMenuItem<String>(
-                                            value: "3",
-                                            child: Center(
-                                              child: Text("اللواء 2 "),
-                                            ),
-                                          ),
-                                          DropdownMenuItem<String>(
-                                            value: "4",
-                                            child: Center(
-                                              child: Text("اللواء 3 "),
-                                            ),
-                                          ),
-                                        ],
-                                        onChanged: (_value) => {
-                                          print(_value.toString()),
-                                        },
-                                        hint: Text('اللواء'),
-                                        value: "1",
+                                child: Container(
+                                  height: 40.0,
+                                  width: 250,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.arrow_drop_down,
+                                        textDirection: TextDirection.ltr,
                                       ),
-                                    ),
-                                  ],
+                                      DropdownButtonHideUnderline(
+                                        child: DropdownButton<String>(
+                                          iconSize: 0,
+                                          value: lValue,
+                                          onChanged: (String text) {
+                                            setState(() {
+                                              lValue = text;
+                                            });
+                                          },
+                                          items: lItems
+                                              .map<DropdownMenuItem<String>>(
+                                                  (String text) {
+                                            return DropdownMenuItem<String>(
+                                              value: text,
+                                              child: Text(text),
+                                            );
+                                          }).toList(),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -339,6 +350,7 @@ class DetailsDocs extends State<Myhome> {
                         ),
                       ),
                       Container(
+                        width: MediaQuery.of(context).size.width,
                         margin: EdgeInsets.only(
                             top: 30.0, bottom: 5.0, left: 5.0, right: 5.0),
                         alignment: AlignmentDirectional.topEnd,
@@ -352,7 +364,7 @@ class DetailsDocs extends State<Myhome> {
                                 color: Color(0XFFF3F3F3),
                               ),
                               borderRadius:
-                              BorderRadius.all(Radius.circular(11.0)),
+                                  BorderRadius.all(Radius.circular(11.0)),
                             ),
                           ),
                           child: Container(
@@ -364,46 +376,25 @@ class DetailsDocs extends State<Myhome> {
                                 Icon(
                                   Icons.arrow_drop_down,
                                 ),
-
-                                //   Padding(
-                                //   padding: EdgeInsets.all(5.0),
-                                DropdownButtonHideUnderline(
-                                  child: DropdownButton<String>(
-                                    iconSize: 0,
-                                    items: [
-                                      DropdownMenuItem<String>(
-                                        value: "1",
-                                        child: Center(
-                                          child: Text(
-                                            "نوع الطلب",
-                                          ),
-                                        ),
+                                DropdownButton<String>(
+                                  iconSize: 0,
+                                  value: typeValue,
+                                  onChanged: (String text) {
+                                    setState(() {
+                                      typeValue = text;
+                                    });
+                                  },
+                                  items: typeItems
+                                      .map<DropdownMenuItem<String>>(
+                                          (String text) {
+                                    return DropdownMenuItem<String>(
+                                      value: text,
+                                      child: Text(
+                                        text,
+                                        textAlign: TextAlign.center,
                                       ),
-                                      DropdownMenuItem<String>(
-                                        value: "2",
-                                        child: Center(
-                                          child: Text("شكوى "),
-                                        ),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: "3",
-                                        child: Center(
-                                          child: Text("ثناء "),
-                                        ),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: "4",
-                                        child: Center(
-                                          child: Text("اقتراح "),
-                                        ),
-                                      ),
-                                    ],
-                                    onChanged: (_value) => {
-                                      print(_value.toString()),
-                                    },
-                                    hint: Text('نوع الطلب'),
-                                    value: "1",
-                                  ),
+                                    );
+                                  }).toList(),
                                 ),
                               ],
                             ),
@@ -448,7 +439,7 @@ class DetailsDocs extends State<Myhome> {
                                 hintText: '  التفاصيل',
                                 hintStyle: TextStyle(fontSize: 14),
                                 contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
+                                    EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
@@ -457,6 +448,7 @@ class DetailsDocs extends State<Myhome> {
                           ),
                         ),
                       ),
+
                       Container(
                         child: RaisedButton(
                           onPressed: () {},
@@ -490,34 +482,22 @@ class DetailsDocs extends State<Myhome> {
                                 Icons.keyboard_arrow_down,
                                 color: Colors.white,
                               ),
-                              items: [
-                                DropdownMenuItem<String>(
-                                  value: "1",
-                                  child: Center(
-                                    child: Text(
-                                      "En",
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                                DropdownMenuItem<String>(
-                                  value: "2",
-                                  child: Center(
-                                    child: Text(
-                                      "Ar",
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              onChanged: (_value) => {
-                                print(_value.toString()),
+                              value: langValue,
+                              onChanged: (String text) {
+                                setState(() {
+                                  langValue = text;
+                                });
                               },
-                              hint: Text(
-                                'Ar',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              value: "2",
+                              items: langItems
+                                  .map<DropdownMenuItem<String>>((String text) {
+                                return DropdownMenuItem<String>(
+                                  value: text,
+                                  child: Text(
+                                    text,
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                );
+                              }).toList(),
                             ),
                           ),
                         ),
@@ -534,6 +514,46 @@ class DetailsDocs extends State<Myhome> {
                   ),
                 ),
               ]),
+
+              /// bottom bar
+              Container(
+                //height: MediaQuery.of(context).size.height,
+
+                child: BottomAppBar(
+                  color: Colors.black,
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.person),
+                        onPressed: () {},
+                        color: Colors.white,
+                        iconSize: 40,
+                      ),
+                      Spacer(),
+                      IconButton(
+                        icon: Icon(Icons.file_copy_rounded),
+                        onPressed: () {},
+                        color: Colors.white,
+                        iconSize: 40,
+                      ),
+                      Spacer(),
+                      IconButton(
+                        icon: Icon(Icons.add_alert),
+                        onPressed: () {},
+                        color: Colors.white,
+                        iconSize: 40,
+                      ),
+                      Spacer(),
+                      IconButton(
+                        icon: Icon(Icons.exit_to_app_rounded),
+                        onPressed: () {},
+                        color: Colors.white,
+                        iconSize: 40,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
