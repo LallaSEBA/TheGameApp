@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shaths_app_thegame/widget/navigationBar.dart';
 
 class Myhome extends StatefulWidget {
   DetailsHome createState() => DetailsHome();
 }
 
 class DetailsHome extends State<Myhome> {
-  static const List<String> langItems = const [
-    'En',
-    'Ar ',
-  ];
 
-  String langValue = langItems[0];
 
   /// اللواء
   static const List<String> lItems = const [
@@ -77,12 +73,11 @@ class DetailsHome extends State<Myhome> {
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assests/details.jpg'),
+                      image: AssetImage('assets/image/u6.JPG'),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-
                 Padding(
                   padding: EdgeInsets.only(
                       top: 90.0, bottom: 5.0, left: 20.0, right: 20.0),
@@ -448,7 +443,7 @@ class DetailsHome extends State<Myhome> {
                           ),
                         ),
                       ),
-
+              
                       Container(
                         child: RaisedButton(
                           onPressed: () {},
@@ -463,97 +458,7 @@ class DetailsHome extends State<Myhome> {
                     ],
                   ),
                 ),
-
-                // appBar:AppBar(
-
-                Positioned(
-                  child: AppBar(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    title: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                              icon: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Colors.white,
-                              ),
-                              value: langValue,
-                              onChanged: (String text) {
-                                setState(() {
-                                  langValue = text;
-                                });
-                              },
-                              items: langItems
-                                  .map<DropdownMenuItem<String>>((String text) {
-                                return DropdownMenuItem<String>(
-                                  value: text,
-                                  child: Text(
-                                    text,
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                );
-                              }).toList(),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    actions: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Icon(
-                          Icons.menu,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               ]),
-
-              /// bottom bar
-              Container(
-                //height: MediaQuery.of(context).size.height,
-
-                child: BottomAppBar(
-                  color: Colors.black,
-                  child: Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.person),
-                        onPressed: () {},
-                        color: Colors.white,
-                        iconSize: 40,
-                      ),
-                      Spacer(),
-                      IconButton(
-                        icon: Icon(Icons.file_copy_rounded),
-                        onPressed: () {},
-                        color: Colors.white,
-                        iconSize: 40,
-                      ),
-                      Spacer(),
-                      IconButton(
-                        icon: Icon(Icons.add_alert),
-                        onPressed: () {},
-                        color: Colors.white,
-                        iconSize: 40,
-                      ),
-                      Spacer(),
-                      IconButton(
-                        icon: Icon(Icons.exit_to_app_rounded),
-                        onPressed: () {},
-                        color: Colors.white,
-                        iconSize: 40,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
             ],
           ),
         ),
