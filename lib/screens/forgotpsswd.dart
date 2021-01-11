@@ -1,6 +1,3 @@
-//*******************************************
-//************** OUM MARIA ******************
-
 import 'package:flutter/material.dart';
 
 class ForgotPage extends StatefulWidget {

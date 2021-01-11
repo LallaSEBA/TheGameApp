@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shaths_app_thegame/controller/const.dart';
-import 'package:shaths_app_thegame/widget/drawer_user.dart';
-import 'package:shaths_app_thegame/widget/drawer_adm.dart';
-import 'package:shaths_app_thegame/widget/navigationBar.dart';
+import '../controller/const.dart';
+import '../widget/drawer_user.dart';
+import '../widget/drawer_adm.dart';
+import '../widget/navigationBar.dart';
 
 class Home extends StatelessWidget {
   final bool isAdmin;

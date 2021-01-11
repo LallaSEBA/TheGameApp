@@ -1,7 +1,7 @@
  import 'dart:convert';
  import 'package:shared_preferences/shared_preferences.dart';
  import 'package:http/http.dart' as http;
-import 'package:shaths_app_thegame/models/user.dart';
+ import '../models/user.dart';
 
  class DBManager{
    String url = 'https://maak-app.herokuapp.com/api/user';

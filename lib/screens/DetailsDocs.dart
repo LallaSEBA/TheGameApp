@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shaths_app_thegame/widget/navigationBar.dart';
+import '../widget/navigationBar.dart';
 
 class Myhome extends StatefulWidget {
   DetailsDocs createState() => DetailsDocs();
@@ -534,46 +534,6 @@ class DetailsDocs extends State<Myhome> {
                   ),
                 ),
               ]),
-            /*
-              /// bottom bar
-              Container(
-                //height: MediaQuery.of(context).size.height,
-
-                child: BottomAppBar(
-                  color: Colors.black,
-                  child: Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.person),
-                        onPressed: () {},
-                        color: Colors.white,
-                        iconSize: 40,
-                      ),
-                      Spacer(),
-                      IconButton(
-                        icon: Icon(Icons.file_copy_rounded),
-                        onPressed: () {},
-                        color: Colors.white,
-                        iconSize: 40,
-                      ),
-                      Spacer(),
-                      IconButton(
-                        icon: Icon(Icons.add_alert),
-                        onPressed: () {},
-                        color: Colors.white,
-                        iconSize: 40,
-                      ),
-                      Spacer(),
-                      IconButton(
-                        icon: Icon(Icons.exit_to_app_rounded),
-                        onPressed: () {},
-                        color: Colors.white,
-                        iconSize: 40,
-                      ),
-                    ],
-                  ),
-                ),
-              ),*/
             ],
           ),
         ),

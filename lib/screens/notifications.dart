@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shaths_app_thegame/widget/navigationBar.dart';
+import '../widget/navigationBar.dart';
 
 class Myhome extends StatefulWidget {
   NotificationHome createState() => NotificationHome();
