@@ -18,7 +18,7 @@ class ResetPwd extends State<Myhome> {
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assests/7_background.jpg'),
+                      image: AssetImage('assets/image/u11.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),
