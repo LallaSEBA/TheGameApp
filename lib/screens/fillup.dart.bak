@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:shaths_app_thegame/controller/function.dart';
 import '../ressources/strings.dart';
-import '../controller/user_controller.dart';
+import '../controller/db_manager.dart';
 import '../ressources/countries.dart';
 import '../ressources/const.dart';
 import 'package:intl/intl.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shaths_app_thegame/controller/function.dart';
 import '../ressources/const.dart';
-import '../controller/user_controller.dart';
+import '../controller/db_manager.dart';
 
 class SignUp extends StatefulWidget {
   _SignUp createState() => _SignUp();
@@ -11,7 +11,8 @@ class _SignUp extends State<SignUp> {
   TextEditingController email     = TextEditingController();
   TextEditingController password  = TextEditingController();
   TextEditingController cPassword = TextEditingController();
-  var db = UserController();
+  var db = DBManager();
+  String msgError = '';
 
   @override
   Widget build(BuildContext context) {

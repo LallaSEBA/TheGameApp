@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import '../controller/user_controller.dart';
+import '../controller/db_manager.dart';
 //import 'package:firstgameapp1/view/forgotpsswd.dart';
 
 class LoginAdminPage extends StatefulWidget {
@@ -16,7 +16,7 @@ class LoginAdminPageState extends State<LoginAdminPage> {
   final TextEditingController _email = new TextEditingController();
   final TextEditingController _password = new TextEditingController();
 
-  var db = UserController();
+  var db = DBManager();
 
   bool valueCheck = false;
 
@@ -56,7 +56,6 @@ class LoginAdminPageState extends State<LoginAdminPage> {
                   textAlign: TextAlign.right,
                 ),
               ),
-
               Container(
                 height: 30.0,
                 child: new Text(
