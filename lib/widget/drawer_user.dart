@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shaths_app_thegame/controller/const.dart';
+import '../ressources/strings.dart';
+import '../ressources/const.dart';
 
 Widget drawerUser (BuildContext context ){
   var name  = "الاسم الكامل";
@@ -31,8 +32,8 @@ Widget drawerUser (BuildContext context ){
                              backgroundColor: cOrange,
                              radius: 25,
                              child:Image.asset("assets/image/u10.png", width:45,),//Icon(Icons.person, size:40, color: cWhite,)
-                           ),
-                         ),
+                            ),
+                          ),
                              Text(name, style: TextStyle(color: cWhite, fontSize: 20, fontWeight: FontWeight.bold),),
                              Text(email, style: TextStyle(color: cWhite, fontSize: 16),),
                            ],
@@ -43,9 +44,9 @@ Widget drawerUser (BuildContext context ){
                                crossAxisAlignment: CrossAxisAlignment.end,
                                mainAxisAlignment: MainAxisAlignment.start,
                                children: <Widget>[
-                                 FlatButton(padding:EdgeInsets.only(left:47), child: Text("الحساب", style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},),
-                                 FlatButton(padding:EdgeInsets.only(left:50), child: Text("الإشعاراب", style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},),
-                                 FlatButton(padding:EdgeInsets.only(left:60), child: Text("الطلب", style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},),
+                                 FlatButton(padding:EdgeInsets.only(left:47), child: Text(str_Account, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},),
+                                 FlatButton(padding:EdgeInsets.only(left:50), child: Text(str_nnotification, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},),
+                                 FlatButton(padding:EdgeInsets.only(left:60), child: Text(str_demande, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},),
                                /*
                                  Divider(
                                        color: cGreyL,

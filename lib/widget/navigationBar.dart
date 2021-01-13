@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shaths_app_thegame/controller/const.dart';
+import '../ressources/const.dart';
 class navigationBar extends StatefulWidget {
   final bool isAdmin;
 

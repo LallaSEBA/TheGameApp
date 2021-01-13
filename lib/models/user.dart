@@ -1,6 +1,6 @@
 class User{
   String _token;
-  String _id;
+  int    _id;
   String _f_Name;
   String _s_Name;
   String _t_Name;
@@ -25,7 +25,7 @@ class User{
 
   
   String get token         => _token;
-  String get id            => _id;
+  int    get id            => _id;
   String get f__name       => _f_Name;
   String get s__name       => _s_Name;
   String get t__name       =>_t_Name;
@@ -43,7 +43,7 @@ class User{
 
   
   set setToken(String token)             => _token = token;
-  set setId(String id)                   => _id = id;
+  set setId(int id)                      => _id = id;
   set setFname(String fName)             => _f_Name = fName;
   set setSname(String sName)             => _s_Name = sName;
   set setTname(String tName)             => _t_Name = tName;

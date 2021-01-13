@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import '../controller/db_manager.dart';
-//import 'package:firstgameapp1/view/forgotpsswd.dart';
+
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -13,16 +11,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  final TextEditingController _email = new TextEditingController();
-  final TextEditingController _password = new TextEditingController();
+  final TextEditingController _emailAdmin = new TextEditingController();
+  final TextEditingController _passwordAdmin = new TextEditingController();
 
-  var db = DBManager();
-
-  bool valueCheck = false;
+  bool valueCheck1 = false;
 
   void onChange(bool valeur) {
     setState(() {
-      valueCheck = valeur;
+      valueCheck1 = valeur;
     });
   }
 
@@ -41,7 +37,7 @@ class LoginPageState extends State<LoginPage> {
             ),
           ),
           padding:
-              EdgeInsets.only(left: 23.0, top: 13.0, right: 23.0, bottom: 5.0),
+          EdgeInsets.only(left: 23.0, top: 25.0, right: 23.0, bottom: 5.0),
           child: ListView(
             children: <Widget>[
               Container(
@@ -78,11 +74,12 @@ class LoginPageState extends State<LoginPage> {
                 child: new TextField(
                     textDirection: TextDirection.rtl,
                     textAlign: TextAlign.right,
-                    textAlignVertical: TextAlignVertical.bottom,
-                    controller: _email,
+                    textAlignVertical: TextAlignVertical.center,
+                    controller: _emailAdmin,
                     keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(                      
-                      prefixIcon: Padding( padding: const EdgeInsets.all(10,) , child: Image.asset("assets/image/email.png", width: 5, height: 5, fit: BoxFit.contain,),),
+                    decoration: InputDecoration(
+                      prefixIcon:
+                      new Icon(Icons.email, color: Color(0xffB9B9B9), size: 23.0),
                       hintText: 'البريد الالكتروني',
                       hintStyle: TextStyle(color: Color(0xffB9B9B9),),
                     )),
@@ -96,61 +93,29 @@ class LoginPageState extends State<LoginPage> {
                 child: new TextField(
                   textDirection: TextDirection.rtl,
                   textAlign: TextAlign.right,
-                  controller: _password,
+                  controller: _passwordAdmin,
                   obscureText: true,
                   keyboardType: TextInputType.text,
-                  decoration: InputDecoration(                    
-                      prefixIcon: Padding( padding: const EdgeInsets.all(10,) , child: Image.asset("assets/image/eye.png", width: 5, height: 5, fit: BoxFit.contain,),),
+                  decoration: InputDecoration(
+                    prefixIcon: new Icon(Icons.remove_red_eye,
+                        color: Color(0xffB9B9B9), size: 23.0),
                     hintText: 'كلمة السر',
                     hintStyle: TextStyle(color: Color(0xffB9B9B9)),
                   ),
                 ),
               ),
 
-              Container(
-                height: 30.0,
-                child: new FlatButton(
-                  onPressed: (){},
-                  padding: const EdgeInsets.all(0),
-                  // وضعت هنا لينك يأخد الى واجهة الفورجوت باسورد يشتغل عند نزع الكومنت ووضع لينك له في الماين
 
-                  //onPressed: () =>
-                      //Navigator.of(context).push(new MaterialPageRoute(
-                   // builder: (BuildContext context) => new ForgotPage(),
-                  //)),
-                  child: new Stack(
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: new Text(
-                          'نسيت كلمة المرور؟',
-                          textAlign: TextAlign.right,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xffFF771A),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
               new Padding(
-                padding: new EdgeInsets.only(top: 25.0),
+                padding: new EdgeInsets.only(top: 52.0),
               ),
 
               Container(
                 child: new RaisedButton(
-                  onPressed: () async{
-                    db.loginData(_email.text, _password.text)
-                    .then((response){
-                      print('réponse $response');
-                      });
-                  },
+                  onPressed: () {},
                   color: Color(0xff4D7FFF),
                   child: new Text(
-                    'تسجبل الدخول',
+                    'تسجيل الدخول',
                     style: new TextStyle(
                         fontSize: 19.0,
                         color: Color(0xffFFFFFF),
@@ -167,23 +132,23 @@ class LoginPageState extends State<LoginPage> {
               Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                new Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    new Text(
-                      'ابقنى متصل',
-                      style: new TextStyle(
-                        color: Color(0xff000000),
-                        fontWeight: FontWeight.w700,
-                      ),
+                    new Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        new Text(
+                          'ابقنى متصل',
+                          style: new TextStyle(
+                            color: Color(0xff000000),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        Checkbox(
+                            value: valueCheck1,
+                            onChanged: onChange,
+                            activeColor: Colors.black),
+                      ],
                     ),
-                    Checkbox(
-                        value: valueCheck,
-                        onChanged: onChange,
-                        activeColor: Colors.black),
-                  ],
-                ),
-              ]),
+                  ]),
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -204,12 +169,15 @@ class LoginPageState extends State<LoginPage> {
                           //)
                           //),
 
-                          child: new Text(
-                            'عد الى الصفحة الرئيسية',
-                            style: new TextStyle(
-                              color: Color(0xff4D7FFF),
-                              fontWeight: FontWeight.bold,
+                          child: FlatButton(
+                            child: new Text(
+                              'قم بانشاء حساب جديد',
+                              style: new TextStyle(
+                                color: Color(0xffFF771A),
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
+                            onPressed: ()=>Navigator.of(context).pushNamed('/signUp'),
                           ),
                         ),
                       ),
@@ -217,23 +185,38 @@ class LoginPageState extends State<LoginPage> {
                         height: 18.0,
                         margin: const EdgeInsets.all(0),
                         padding: const EdgeInsets.all(0),
-                        child: new FlatButton(
+                      /*  child: new FlatButton(
+                          onPressed: (){Navigator.of(context).pushNamed('/signUp');},
                           padding: const EdgeInsets.all(0),
-                          child: new Text(
-                            "لست مسؤول؟  ",
+                         */ child: new Text(
+                            "لاتملك حساب؟  ",
                             style: new TextStyle(
                               color: Color(0xff333333),
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          onPressed: (){},
-                        ),
+                        //),
                       ),
                     ],
                   ),
                 ],
               ),
-
+              new Padding(
+                padding: new EdgeInsets.only(top: 63.0),
+              ),
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  new Text(
+                    'مسؤول',
+                    style: new TextStyle(
+                      color: Color(0xff4D7FFF),
+                      fontWeight: FontWeight.w700,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shaths_app_thegame/controller/const.dart';
+import '../ressources/const.dart';
+import 'package:shaths_app_thegame/ressources/strings.dart';
 
 Widget drawerAdm (BuildContext context ){
   var name  = "الاسم الكامل";
@@ -43,10 +44,10 @@ Widget drawerAdm (BuildContext context ){
                                crossAxisAlignment: CrossAxisAlignment.end,
                                mainAxisAlignment: MainAxisAlignment.start,
                                children: <Widget>[
-                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:47), child: Text("الكل", style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},)),
-                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:50), child: Text("شكوى", style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},)),
-                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:60), child: Text("ثناء", style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},)),
-                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:15), child: Text("اقتراحات", style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},)),
+                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:47), child: Text(str_All, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},)),
+                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:50), child: Text(str_shakwa, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},)),
+                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:60), child: Text(str_thana, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},)),
+                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:15), child: Text(str_iktirah, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},)),
                                  
                                /*
                                  Divider(
@@ -59,7 +60,7 @@ Widget drawerAdm (BuildContext context ){
                              ),
                            ),
                           Padding(padding:EdgeInsets.only(top: 20)),
-                          FlatButton(padding:EdgeInsets.only(left:50), child: Text("تسجيل الخروج", style: TextStyle(color:cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},),
+                          FlatButton(padding:EdgeInsets.only(left:50), child: Text(str_exit, style: TextStyle(color:cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},),
                        ],
                      ),
                    ),

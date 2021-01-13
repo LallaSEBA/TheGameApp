@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../controller/const.dart';
+import '../ressources/strings.dart';
+import '../controller/db_manager.dart';
+import '../ressources/const.dart';
 
 class Done extends StatelessWidget {
   final String screenType;
@@ -16,25 +17,25 @@ class Done extends StatelessWidget {
   void getVals() {
    
    switch  (screenType){
-     case 'Done':{
-      titleTxt   = "عمل رائع" ;
-      paragphTxt =  "تمت الإجابة على الطلب \n عد إلى الصفحة الرئيسة للرد على طلب آخر";
-      btnTxt     = "عد إلى الصفحة الرئيسية";
+     case str_Greate:{
+      titleTxt   = str_Greate ;
+      paragphTxt = str_txtGreate;
+      btnTxt     = str_btnGreate;
       fntSize = 12;
       pdn = 30;
      }
      break;
-     case 'youDidIt':{
-      titleTxt   = "تهانينا" ;
-      paragphTxt =  "تم التسجيل بنجاح\nتستطيع الآن الاستمرار";
-      btnTxt     = "استمر";
+     case str_Congrat:{
+      titleTxt   = str_Congrat ;
+      paragphTxt = str_txtCongrat;
+      btnTxt     = str_continue;
       pdn = 60;
      }
      break;
      default :{
-      titleTxt   = "تم الاستلام" ;
-      paragphTxt =  "تم استلام طلبك بنجاح. ستتلقى ردا في أقرب وقت";
-      btnTxt     = "أرسل طلبا آخر";
+      titleTxt   = str_Received ;
+      paragphTxt = str_txtReceived;
+      btnTxt     = str_btnReceived;
       fntSize = 18;
       pdn = 40;
      }
@@ -93,7 +94,25 @@ class Done extends StatelessWidget {
                                                           color: cWhite
                                                         ),
                                                       ),
-                                                onPressed: (){},
+                                                onPressed: () async{                                                  
+                                                    switch  (screenType){
+                                                      case str_Greate:{
+                                                      //  titleTxt   = "عمل رائع" ;
+                                                      var typeUser = await DBManager.isAdminToken();
+                                                       typeUser ? Navigator.of(context).pushReplacementNamed('/homeUser'):
+                                                                  Navigator.of(context).pushReplacementNamed('/homeAdm');
+                                                      }
+                                                      break;
+                                                      case str_Congrat:{
+                                                       // titleTxt   = "تهانينا" ;
+                                                      }
+                                                      break;
+                                                      default :{
+                                                        //titleTxt   = "تم الاستلام" ;
+                                                      }
+                                                      break;
+                                                    }
+                                                },
                                               ),
                                             ),
                                       ],

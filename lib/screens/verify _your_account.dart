@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import '../ressources/strings.dart';
+import '../ressources/const.dart';
 import '../widget/drawer_user.dart';
 
-import '../controller/const.dart';
 import '../widget/drawer_adm.dart';
 import '../widget/navigationBar.dart';
 
@@ -49,7 +50,7 @@ class VerifyYourAccount extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:<Widget>[
                       Padding(padding: EdgeInsets.only(bottom:140)), 
-                      Text( 'أكد حسابك', 
+                      Text( str_confirmAcc, 
                             textAlign: TextAlign.center,
                               style:TextStyle(
                                 fontSize: 25,
@@ -58,7 +59,7 @@ class VerifyYourAccount extends StatelessWidget {
                               ),
                             ),
                       Padding(padding: EdgeInsets.only(bottom:10)),  
-                      Text( 'أدخل رمز التحقق المرسل إلى حسابك الإلكتروني لتأكيد حسابك', 
+                      Text( str_confirmAccMsg, 
                             textAlign: TextAlign.center,
                               style:TextStyle(
                                 fontSize: 12,
@@ -68,7 +69,7 @@ class VerifyYourAccount extends StatelessWidget {
                               ),
                             ),
                       Padding(padding: EdgeInsets.only(bottom:60)),  
-                      Text( 'رمز التحقق', 
+                      Text( str_confirmAccC, 
                             textAlign: TextAlign.center,
                               style:TextStyle(
                                 fontSize: 18,

@@ -15,7 +15,7 @@ class homestate extends State<Home> {
   Widget build(BuildContext context) {
     return new Container(
 
-        child:  new Expanded(  child:ListView.builder(
+          child:ListView.builder(
             padding: EdgeInsets.only(top:200.0),
             itemCount: 33,
 
@@ -119,7 +119,7 @@ class homestate extends State<Home> {
                                       radius: 30,
                                       backgroundColor: Colors.teal,
                                       child: CircleAvatar(
-                                        backgroundImage: AssetImage('images/acc.jpg'),
+                                        backgroundImage: AssetImage('assets/image/u5.JPG'),
                                         radius:28.5,
                                       ),  ),   ),
                                 ],),
@@ -132,7 +132,7 @@ class homestate extends State<Home> {
                 ),
               );
 
-            }),),
+            }),
 
       );
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shaths_app_thegame/widget/drawer_adm.dart';
+import '../ressources/strings.dart';
 import '../widget/all.dart';
 import '../widget/tribute.dart';
 import '../widget/complain.dart';
@@ -10,7 +12,25 @@ class Complain extends StatefulWidget{
   _Complainstate createState()=> _Complainstate();
 }
 
-class _Complainstate extends State<Complain>{
+class _Complainstate extends State<Complain> with SingleTickerProviderStateMixin {  
+  
+  TabController _controller;
+
+  
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // Create TabController for getting the index of current tab
+    _controller = TabController(length:4, vsync: this, initialIndex: 2);
+   // _controller.index = 2;
+
+    _controller.addListener(() {
+      setState(() {
+       var _selectedIndex = _controller.index;
+      });
+      print("Selected Index: " + _controller.index.toString());
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -28,22 +48,19 @@ class _Complainstate extends State<Complain>{
                 fontWeight: FontWeight.bold,
               ),
               tabs:[
-                Tab(text:'اقتراح'),
-                Tab(text:'شكوى'),
-                Tab(text:'ثناء'),
-                Tab(text: 'الكل',),
-
-
-
+                Tab(text:str_iktirah),
+                Tab(text:str_shakwa),
+                Tab(text:str_thana),
+                Tab(text: str_All),
               ]
           ),
           elevation: 0,
         ),
-        endDrawer: Drawer(),
+        endDrawer: drawerAdm(context),
         body:new Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/u6.jpg'),
+              image: AssetImage('assets/image/u6.JPG'),
               fit: BoxFit.fill,
             ),
           ),

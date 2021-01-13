@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shaths_app_thegame/controller/function.dart';
+import '../ressources/const.dart';
 import '../controller/db_manager.dart';
 
 class SignUp extends StatefulWidget {
@@ -10,6 +12,7 @@ class _SignUp extends State<SignUp> {
   TextEditingController password  = TextEditingController();
   TextEditingController cPassword = TextEditingController();
   var db = DBManager();
+  String msgError = '';
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +79,7 @@ class _SignUp extends State<SignUp> {
                               child: TextField(
                                 controller: email,
                                 textAlign: TextAlign.right,
+                                keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                     labelText: 'البريد الإلكتروني',
                                     suffixIcon: Padding(
@@ -121,8 +125,9 @@ class _SignUp extends State<SignUp> {
                           ),
                         ),
                       ),
+                      Text(msgError, style: TextStyle(color: cOrange, fontSize: 13, fontWeight: FontWeight.bold, height: 2),),
                       Padding(
-                        padding: const EdgeInsets.only(top: 50.0, bottom: 50.0),
+                        padding: const EdgeInsets.only(top: 20.0, bottom: 35.0),
                         child: Container(
                          // child: Expanded(
                               child: SizedBox(
@@ -135,11 +140,21 @@ class _SignUp extends State<SignUp> {
                                     textColor: Colors.white,
                                     color: Color(0xfF4D7FFF),
                                     onPressed: () async{
-                                     var response = await db.registerData(email.text, password.text, cPassword.text);//lalla@seba_123.com
-                                     print('response register: ${response}');
-                                     if(response) 
-                                        Navigator.of(context).pushReplacementNamed('/fillUp');
-                                      }),
+                                      if(password.text!=cPassword.text || password.text.length<8) 
+                                      setState(() {
+                                        if (password.text!=cPassword.text) msgError = 'كلمة المرور وتأكيدها غير متوافقان';
+                                        if (password.text.length<8) msgError = 'عدد حروف كلمة المرور يجب أن تكون أكبر من 7 حروف';
+                                      });
+                                      else 
+                                      {
+                                        var response = await db.registerData(email.text, password.text, cPassword.text);//lalla@seba_123.com
+                                        print('response register: ${response}');
+                                        if(response) Navigator.of(context).pushReplacementNamed('/fillUp');
+                                        else setState(() {
+                                          msgError = db.rsponseMsg;
+                                        });
+                                      }
+                                    }),
                               )//),
                         ),
                       ),
@@ -151,7 +166,8 @@ class _SignUp extends State<SignUp> {
                               child: IconButton(
                                   padding: EdgeInsets.only(right: 10,),
                                   icon: Image.asset("assets/image/exit2.png" ,fit: BoxFit.contain,width: 120,height: 90,),
-                                  onPressed: null)),
+                                  onPressed:()=>fctExit() )
+                          ),
                          // Spacer(),
                           Container(
                             child: Column(
@@ -182,7 +198,7 @@ class _SignUp extends State<SignUp> {
                                     ),
                                   ),
                                   onPressed: () {
-                                    Navigator.of(context).pushReplacementNamed('/loginUser');
+                                    Navigator.of(context).pushNamed('/login');
                                   },
                                 )
                               ],
