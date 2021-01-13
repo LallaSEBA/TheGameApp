@@ -1,3 +1,4 @@
+
  import 'dart:convert';
  import 'package:shared_preferences/shared_preferences.dart';
  import 'package:http/http.dart' as http;
@@ -7,6 +8,7 @@
    String url = 'https://maak-app.herokuapp.com/api/user';
    var status;
    static User user;
+   var rsponseMsg;
 
   loginData(String email, String password) async{
      String myUrl= "$url/login";
@@ -57,19 +59,33 @@
    }
 
   registerData(String email, String password, String c_password) async{
-    String myUrl="$url/register";
-    final response = await http.post(myUrl,
-          headers: {'Accept':'application/json'},
-          body:{'email':email, 'password':password, 'c_password':c_password}
-          );
-    var data = json.decode(response.body);
-    status =  data['success'];
-    if (status){
-      var rspLogin = await loginData(email,  password);
-      print('data : ${data['error']} $rspLogin');
-    } else{
-      print('data : ${data['token']}');
+    String myUrl="$url/register";    
+    status = false;
+    try{
+        final response = await http.post(myUrl,
+              headers: {'Accept':'application/json'},
+              body:{'email':email, 'password':password, 'c_password':c_password}
+              );
+        var data = json.decode(response.body);
+        status =  data['success'];
+        if (status){
+          var rspLogin = await loginData(email,  password);
+          user.setOldPwd = password;
+          user.setNewPwd = password;
+          user.setEmail = email;
+
+          print('data : ${data['token']} $rspLogin');
+        } else{
+          print('data : ${data['error']}');
+          rsponseMsg = '${data['error']}';
+        }
     }
+    catch(e){
+      if (e.message.contains('Failed host'))
+      rsponseMsg = 'تأكد من اتصالك بالأنترنت';
+    else rsponseMsg = e.toString();
+    }
+
     return status;
   }
  

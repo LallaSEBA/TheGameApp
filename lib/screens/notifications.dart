@@ -20,7 +20,7 @@ class NotificationHome extends State<Myhome> {
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assests/notifications.jpg'),
+                      image: AssetImage('assets/image/u1.JPG'),
                       //fit: BoxFit.cover,
                       fit: BoxFit.none,
                     ),

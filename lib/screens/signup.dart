@@ -12,6 +12,7 @@ class _SignUp extends State<SignUp> {
   TextEditingController password  = TextEditingController();
   TextEditingController cPassword = TextEditingController();
   var db = UserController();
+  String msgError = '';
 
   @override
   Widget build(BuildContext context) {

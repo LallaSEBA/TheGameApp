@@ -1,4 +1,4 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:shaths_app_thegame/controller/function.dart';
 import '../ressources/strings.dart';
@@ -25,7 +25,7 @@ class _FillupState extends State<Fillup>{
    var months = ["جانفي", "فيفري", "مارس", "أفريل", "ماي", "جوان", "جويلية", "أوت", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
    String _selectedPhone;
    
-  var db = DBManager();
+  var db = UserController();
 
    var _fName = TextEditingController();
    var _sName = TextEditingController();
@@ -210,9 +210,7 @@ addPhoneNumber(){
                         borderRadius:BorderRadius.circular(radius),
                       )
                     ),
-                   // onEditingComplete: () => node.nextFocus(),
-                    onChanged: (value){       
-                      //FocusNode fNode = FocusNode();       FocusScope.of(context).requestFocus(fNode)        
+                    onChanged: (value){          
                     if(length == 1) 
                      node.nextFocus();
                     }

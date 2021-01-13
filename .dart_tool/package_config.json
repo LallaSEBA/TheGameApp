@@ -141,7 +141,7 @@
     },
     {
       "name": "material_design_icons_flutter",
-      "rootUri": "file:///C:/Users/Lalla/AppData/Roaming/Pub/Cache/hosted/pub.flutter-io.cn/material_design_icons_flutter-4.0.5755",
+      "rootUri": "file:///C:/Users/Lalla/AppData/Roaming/Pub/Cache/hosted/pub.flutter-io.cn/material_design_icons_flutter-4.0.5855",
       "packageUri": "lib/",
       "languageVersion": "1.19"
     },
@@ -326,7 +326,7 @@
       "languageVersion": "2.1"
     }
   ],
-  "generated": "2021-01-11T16:36:38.898571Z",
+  "generated": "2021-01-13T14:48:29.559170Z",
   "generator": "pub",
   "generatorVersion": "2.7.2"
 }

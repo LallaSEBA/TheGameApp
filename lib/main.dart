@@ -3,8 +3,8 @@ import 'package:shaths_app_thegame/screens/complainpage.dart';
 import 'ressources/strings.dart';
 import 'package:shaths_app_thegame/screens/fillup.dart';
 import 'package:shaths_app_thegame/screens/home.dart';
-import 'package:shaths_app_thegame/screens/loginadm.dart';
 import 'package:shaths_app_thegame/screens/login.dart';
+import 'package:shaths_app_thegame/screens/loginadmin.dart';
 import 'package:shaths_app_thegame/screens/signup.dart';
 import 'package:shaths_app_thegame/screens/verify%20_your_account.dart';
 import 'screens/done.dart';
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home:LoginPage(),
+      home:SignUp(),
       routes: {
        '/signUp'   : (BuildContext context)=>SignUp(),
        '/fillUp'   : (BuildContext context)=>Fillup(),
