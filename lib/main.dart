@@ -6,7 +6,6 @@ import 'package:shaths_app_thegame/screens/home.dart';
 import 'package:shaths_app_thegame/screens/login.dart';
 import 'package:shaths_app_thegame/screens/loginadmin.dart';
 import 'package:shaths_app_thegame/screens/signup.dart';
-import 'package:shaths_app_thegame/screens/verify%20_your_account.dart';
 import 'screens/done.dart';
 
 void main() => runApp(MyApp());

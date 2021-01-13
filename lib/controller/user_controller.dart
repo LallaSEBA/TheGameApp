@@ -11,29 +11,29 @@
    var rsponseMsg;
 
   loginData(String email, String password) async{
-     String myUrl= "$url/login";
-     bool isDone;
-     try{
-     final response = await http.post(myUrl,
-            headers: {'Accept':'application/json'},
-            body:{'email':email, 'password':password}
-            );
-      var data = json.decode(response.body);
-      status =  data['success'];
-      if (status){
-        user = User.fromJson(data);
-        user.setToken = data['access_token'];
-        var user2 = await getData();
-        print('data : ${data['access_token']}');
-      } else{
-        print('data : ${data['error']}');
+      String myUrl= "$url/login";
+      bool isDone;
+      try{
+      final response = await http.post(myUrl,
+              headers: {'Accept':'application/json'},
+              body:{'email':email, 'password':password}
+              );
+        var data = json.decode(response.body);
+        status =  data['success'];
+        if (status){
+          user = User.fromJson(data);
+          user.setToken = data['access_token'];
+          var user2 = await getData();
+          print('data : ${data['access_token']}');
+        } else{
+          print('data : ${data['error']}');
+        }
       }
-    }
-    catch(e){
-      print(e.message());
-       status = false;
-    }
-    return status;
+      catch(e){
+        print(e.message());
+        status = false;
+      }
+      return status;
    }
    
   logout() async{
