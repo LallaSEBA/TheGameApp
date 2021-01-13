@@ -29,7 +29,9 @@ class AccountAdminPageState extends State<AccountAdminPage> {
   //function of added image by camera or gallery
   _imgFromCamera() async {
     File image1 = await ImagePicker.pickImage(
-        source: ImageSource.camera, imageQuality: 50);
+      source: ImageSource.camera,
+      imageQuality: 50,
+    );
 
     setState(() {
       _image1 = image1;
@@ -38,7 +40,9 @@ class AccountAdminPageState extends State<AccountAdminPage> {
 
   _imgFromGallery() async {
     File image1 = await ImagePicker.pickImage(
-        source: ImageSource.gallery, imageQuality: 50);
+      source: ImageSource.gallery,
+      imageQuality: 50,
+    );
 
     setState(() {
       _image1 = image1;
@@ -84,7 +88,7 @@ class AccountAdminPageState extends State<AccountAdminPage> {
       home: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-       //   toolbarHeight: 27.0,
+          //   toolbarHeight: 27.0,
           leading: new IconButton(
               icon: new Icon(Icons.arrow_back, color: Color(0xffFFFFFF)),
               onPressed: () {}),
@@ -130,23 +134,23 @@ class AccountAdminPageState extends State<AccountAdminPage> {
                         radius: 55,
                         child: _image1 == null
                             ? ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: new Image.asset(
-                            'images/account.jpg',
-                            height: 250.0,
-                            width: 100.0,
-                            fit: BoxFit.fill,
-                          ),
-                        )
+                                borderRadius: BorderRadius.circular(50),
+                                child: new Image.asset(
+                                  'images/account.jpg',
+                                  height: 250.0,
+                                  width: 100.0,
+                                  fit: BoxFit.fill,
+                                ),
+                              )
                             : ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Image.file(
-                            _image1,
-                            height: 250.0,
-                            width: 100.0,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
+                                borderRadius: BorderRadius.circular(50),
+                                child: Image.file(
+                                  _image1,
+                                  height: 250.0,
+                                  width: 100.0,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
                       ),
                     ),
                     RichText(
@@ -161,7 +165,8 @@ class AccountAdminPageState extends State<AccountAdminPage> {
                             ),
                           ),
                           WidgetSpan(
-                            child: Icon( // gender == male? MdIcons.genderMale:
+                            child: Icon(
+                              // gender == male? MdIcons.genderMale:
                               MdiIcons.genderFemale,
                               size: 15,
                               color: Colors.grey,
@@ -222,8 +227,8 @@ class AccountAdminPageState extends State<AccountAdminPage> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(9)),
                         borderSide: BorderSide(
-                          //width: 2.0,
-                        ),
+                            //width: 2.0,
+                            ),
                       ),
                     ),
                   ),
@@ -270,8 +275,8 @@ class AccountAdminPageState extends State<AccountAdminPage> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(9)),
                         borderSide: BorderSide(
-                          //width: 2.0,
-                        ),
+                            //width: 2.0,
+                            ),
                       ),
                     ),
                   ),
@@ -318,8 +323,8 @@ class AccountAdminPageState extends State<AccountAdminPage> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(9)),
                         borderSide: BorderSide(
-                          //width: 2.0,
-                        ),
+                            //width: 2.0,
+                            ),
                       ),
                     ),
                   ),
@@ -366,8 +371,8 @@ class AccountAdminPageState extends State<AccountAdminPage> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(9)),
                         borderSide: BorderSide(
-                          //width: 2.0,
-                        ),
+                            //width: 2.0,
+                            ),
                       ),
                     ),
                   ),
@@ -414,8 +419,8 @@ class AccountAdminPageState extends State<AccountAdminPage> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(9)),
                         borderSide: BorderSide(
-                          //width: 2.0,
-                        ),
+                            //width: 2.0,
+                            ),
                       ),
                     ),
                   ),
@@ -462,8 +467,8 @@ class AccountAdminPageState extends State<AccountAdminPage> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(9)),
                         borderSide: BorderSide(
-                          //width: 2.0,
-                        ),
+                            //width: 2.0,
+                            ),
                       ),
                     ),
                   ),

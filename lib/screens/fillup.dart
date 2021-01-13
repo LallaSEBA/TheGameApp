@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../controller/const.dart';
 import '../controller/countries.dart';
-import '../controller/db_manager.dart';
+import '../controller/user_controller.dart';
 import 'package:intl/intl.dart';
 
 class Fillup extends StatefulWidget{
@@ -23,7 +23,7 @@ class _FillupState extends State<Fillup>{
    var months = ["جانفي", "فيفري", "مارس", "أفريل", "ماي", "جوان", "جويلية", "أوت", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
    String _selectedPhone;
    
-  var db = DBManager();
+  var db = UserController();
 
    var _fName = TextEditingController();
    var _sName = TextEditingController();
@@ -49,11 +49,11 @@ class _FillupState extends State<Fillup>{
    register() async{
      natioalNo = "${_id1.text.trim()}${_id2.text.trim()}${_id3.text.trim()}${_id4.text.trim()}${_id5.text.trim()}${_id6.text.trim()}${_id7.text.trim()}"+
                  "${_id8.text.trim()}${_id9.text.trim()}${_id10.text.trim()}";
-      DBManager.user.setFname = _fName.text;
-      DBManager.user.setSname = _sName.text;
-      DBManager.user.setTname = _tName.text;
-      DBManager.user.setLname = _rName.text;           
-      DBManager.user.setNational_no = natioalNo;       
+      UserController.user.setFname = _fName.text;
+      UserController.user.setSname = _sName.text;
+      UserController.user.setTname = _tName.text;
+      UserController.user.setLname = _rName.text;           
+      UserController.user.setNational_no = natioalNo;       
        
       var sdate = "$_selectedMth/$_selectedDay/$_selectedYear";  
       try
@@ -64,16 +64,16 @@ class _FillupState extends State<Fillup>{
       var outputFormat = DateFormat('dd/MM/yyyy');
       var outputDate = outputFormat.format(inputDate); 
         //DateTime dt = DateTime.parse(sdate);
-      DBManager.user.setDate_of_birth = outputDate;
+      UserController.user.setDate_of_birth = outputDate;
 
       }catch( e){print(e);}
 
-      genderMale==1 ? DBManager.user.setGender ='ذكر' : DBManager.user.setGender = 'أنثى';
+      genderMale==1 ? UserController.user.setGender ='ذكر' : UserController.user.setGender = 'أنثى';
 
-      DBManager.user.setPhone       = '$_selectedPhone${_phone.text}';
-      DBManager.user.setGovernorate = _mohafadha.text;
-      DBManager.user.setDistrict    = _liwa.text;
-      DBManager.user.setCity        = _mantika.text;
+      UserController.user.setPhone       = '$_selectedPhone${_phone.text}';
+      UserController.user.setGovernorate = _mohafadha.text;
+      UserController.user.setDistrict    = _liwa.text;
+      UserController.user.setCity        = _mantika.text;
       var response = await db.upadateData();
       if (response) Navigator.of(context).pushReplacementNamed('/done');
    }

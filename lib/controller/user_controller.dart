@@ -3,7 +3,7 @@
  import 'package:http/http.dart' as http;
  import '../models/user.dart';
 
- class DBManager{
+ class UserController{
    String url = 'https://maak-app.herokuapp.com/api/user';
    var status;
    static User user;

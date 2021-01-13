@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import '../controller/db_manager.dart';
+import '../controller/user_controller.dart';
 //import 'package:firstgameapp1/view/forgotpsswd.dart';
 
 class LoginPage extends StatefulWidget {
@@ -16,7 +16,7 @@ class LoginPageState extends State<LoginPage> {
   final TextEditingController _email = new TextEditingController();
   final TextEditingController _password = new TextEditingController();
 
-  var db = DBManager();
+  var db = UserController();
 
   bool valueCheck = false;
 

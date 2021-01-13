@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../controller/db_manager.dart';
+import '../controller/user_controller.dart';
 
 class SignUp extends StatefulWidget {
   _SignUp createState() => _SignUp();
@@ -9,7 +9,7 @@ class _SignUp extends State<SignUp> {
   TextEditingController email     = TextEditingController();
   TextEditingController password  = TextEditingController();
   TextEditingController cPassword = TextEditingController();
-  var db = DBManager();
+  var db = UserController();
 
   @override
   Widget build(BuildContext context) {
