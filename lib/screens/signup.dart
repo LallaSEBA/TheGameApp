@@ -151,7 +151,8 @@ class _SignUp extends State<SignUp> {
                                         print('response register: ${response}');
                                         if(response) Navigator.of(context).pushReplacementNamed('/fillUp');
                                         else setState(() {
-                                          msgError = db.rsponseMsg;
+                                          msgError = db.rsponseMsg.replaceAll('{','').replaceAll('[','');
+                                          msgError = msgError.replaceAll('}','').replaceAll(']','');
                                         });
                                       }
                                     }),

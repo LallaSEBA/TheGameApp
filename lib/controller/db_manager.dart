@@ -111,7 +111,6 @@
     var data = json.decode(response.body);
     status =  data['success'];
     if (status){
-      _saveToken(user.token, 'user');
       print('data : ${data['token']}');
     } else{
       print('data : ${data['error']}');
@@ -141,10 +140,10 @@
     return result;
   }
    
-   _saveToken(String token, String typeUser) async{
+   _saveToken(String token, bool isAdmin) async{
      final prefs = await SharedPreferences.getInstance();
      prefs.setString('token', token);
-     prefs.setString('typeUser', typeUser);
+     prefs.setBool('isAdmin', isAdmin);
    }
 
   static readToken() async{

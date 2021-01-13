@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-class ComplaintController{
-}
-=======
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
@@ -155,4 +151,3 @@ class ComplaintController {
     }
   }
 }
->>>>>>> 8e93677ef0e16119298463cba2e158ddc65c642e
