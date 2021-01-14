@@ -96,6 +96,45 @@
     return status;
   }
  
+  ///لارسال شكوى 
+  void makeRequest(int _number,String name, String _local,String liwa, String mohafadha,String section,
+      String type, String subject, String details,
+      String suggestion)
+  async {
+
+      final prefs = await SharedPreferences.getInstance();
+      final key = 'token';
+      final value = prefs.get(key ) ?? 0;
+
+
+    String myUrl = "https://maak-app.herokuapp.com/api/user/requests";
+
+      http.post(myUrl,
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'bearer $value',
+          },
+
+          body: {
+
+            "_number": "$_number",
+            "name": "$name",
+            "_local": "$_local",
+            "liwa": "$liwa",
+            "mohafadha": "$mohafadha",
+            "type": "$type",
+            "subject": "$subject",
+            "details": "$details",
+            "suggestion": "$suggestion",
+            "section": "$section",
+          }).then((response) {
+            print('Response status: ${response.statusCode}');
+            print('Response body: ${response.body}');
+
+      }); }
+
+  
+  
   upadateData() async{
     String myUrl="$url/me";    
     try{
