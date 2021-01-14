@@ -1,5 +1,5 @@
 const List<Map<String, String>> countries = [
-  {
+/*  {
     "name": "Afghanistan",
     "flag": "🇦🇫",
     "code": "AF",
@@ -665,12 +665,14 @@ const List<Map<String, String>> countries = [
     "code": "JE",
     "dial_code": "+44",
   },
+  */
   {
     "name": "Jordan",
     "flag": "🇯🇴",
     "code": "JO",
     "dial_code": "+962",
   },
+  /*
   {
     "name": "Kazakhstan",
     "flag": "🇰🇿",
@@ -1474,5 +1476,5 @@ const List<Map<String, String>> countries = [
     "flag": "🇿🇼",
     "code": "ZW",
     "dial_code": "+263",
-  }
+  }*/
 ];

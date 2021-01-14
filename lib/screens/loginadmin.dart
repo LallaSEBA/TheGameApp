@@ -108,7 +108,7 @@ class LoginAdminPageState extends State<LoginAdminPage> {
                   ),
                 ),
               ),
-
+             /*
               Container(
                 height: 30.0,
                 child: new FlatButton(
@@ -137,15 +137,15 @@ class LoginAdminPageState extends State<LoginAdminPage> {
                     ],
                   ),
                 ),
-              ),
+              ),*/
               new Padding(
-                padding: new EdgeInsets.only(top: 25.0),
+                padding: new EdgeInsets.only(top: 45.0),
               ),
 
               Container(
                 child: new RaisedButton(
                   onPressed: () async{
-                    db.loginData(_email.text, _password.text)
+                    db.loginData(_email.text, _password.text, valueCheck, true)
                     .then((response){
                       print('réponse $response');
                       });
@@ -197,7 +197,7 @@ class LoginAdminPageState extends State<LoginAdminPage> {
                         margin: const EdgeInsets.all(0),
                         padding: const EdgeInsets.all(0),
                         child: new FlatButton(
-                          onPressed: (){},
+                          onPressed: (){Navigator.of(context).pushNamed('/login');},
                           padding: const EdgeInsets.all(0),
                           //هنا نضع اللينك لانشاء حساب
                           //onPressed: ()=>Navigator.of(context).push(
@@ -228,7 +228,7 @@ class LoginAdminPageState extends State<LoginAdminPage> {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          onPressed: (){},
+                          onPressed: (){Navigator.of(context).pushNamed('/login');},
                         ),
                       ),
                     ],

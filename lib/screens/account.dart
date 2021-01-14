@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import '../controller/user_controller.dart';
+import '../widget/navigationBar.dart';
 
 class AccountPage extends StatefulWidget {
   AccountPage({Key key}) : super(key: key);
@@ -13,12 +15,24 @@ class AccountPage extends StatefulWidget {
 }
 
 class AccountPageState extends State<AccountPage> {
+
   final TextEditingController _nameUser = new TextEditingController();
   final TextEditingController _nationalId = new TextEditingController();
   final TextEditingController _phoneNum = new TextEditingController();
-  final TextEditingController _addressUser = new TextEditingController();
-  final TextEditingController _cityUser = new TextEditingController();
-  final TextEditingController _userGovernorate = new TextEditingController();
+  final TextEditingController _mantikaUser   = new TextEditingController();
+  final TextEditingController _mohafadhaUser = new TextEditingController();
+  final TextEditingController _liwaUser      = new TextEditingController();
+
+  initState() {
+     _nameUser.text = UserController.user.f__name;
+     _nationalId.text = UserController.user.national_no;
+     _phoneNum.text = UserController.user.phone;
+
+     _mantikaUser.text = UserController.user.city;
+     _mohafadhaUser.text = UserController.user.governorate;
+     _liwaUser.text = UserController.user.district;
+    super.initState();
+  }
   //we put the gender user in variable to choose which icon we put in wiget
          //var gender = userGender;
   //variable of image
@@ -79,6 +93,7 @@ class AccountPageState extends State<AccountPage> {
       debugShowCheckedModeBanner: false,
       title: 'Account',
       home: Scaffold(
+        bottomNavigationBar: navigationBar(isAdmin:false, index: 0,),
         extendBodyBehindAppBar: true,
         appBar: AppBar(
         //  toolbarHeight: 27.0,
@@ -92,7 +107,7 @@ class AccountPageState extends State<AccountPage> {
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/u9.jpg'),
+              image: AssetImage('assets/image/u9.JPG'),
               fit: BoxFit.fill,
             ),
           ),
@@ -129,7 +144,7 @@ class AccountPageState extends State<AccountPage> {
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(50),
                                 child: new Image.asset(
-                                  'images/account.jpg',
+                                  'assets/image/u5.JPG',
                                   height: 250.0,
                                   width: 100.0,
                                   fit: BoxFit.fill,
@@ -150,7 +165,7 @@ class AccountPageState extends State<AccountPage> {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: 'الاسم الكامل',
+                            text: '${UserController.user.f__name} ${UserController.user.s__name} ${UserController.user.t__name} ${UserController.user.l__name} ',
                             style: TextStyle(
                               fontSize: 12.0,
                               color: Color(0xff000000),
@@ -159,7 +174,7 @@ class AccountPageState extends State<AccountPage> {
                           ),
                           WidgetSpan(
                             child: Icon( // gender == male? MdIcons.genderMale:
-                              MdiIcons.genderFemale,
+                             UserController.user.gender=='male'? MdiIcons.genderMale:MdiIcons.genderMale,
                               size: 15,
                               color: Colors.grey,
                             ),
@@ -342,7 +357,7 @@ class AccountPageState extends State<AccountPage> {
                   height: 30,
                   child: new TextField(
                     textDirection: TextDirection.rtl,
-                    controller: _addressUser,
+                    controller: _mantikaUser,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       filled: true,
@@ -390,7 +405,7 @@ class AccountPageState extends State<AccountPage> {
                   height: 30,
                   child: new TextField(
                     textDirection: TextDirection.rtl,
-                    controller: _cityUser,
+                    controller: _mohafadhaUser,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       filled: true,
@@ -438,7 +453,7 @@ class AccountPageState extends State<AccountPage> {
                   height: 30,
                   child: new TextField(
                     textDirection: TextDirection.rtl,
-                    controller: _userGovernorate,
+                    controller: _liwaUser,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       filled: true,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import '../widget/navigationBar.dart';
 
 class AccountAdminPage extends StatefulWidget {
   AccountAdminPage({Key key}) : super(key: key);
@@ -83,6 +84,7 @@ class AccountAdminPageState extends State<AccountAdminPage> {
       debugShowCheckedModeBanner: false,
       title: 'Account',
       home: Scaffold(
+        bottomNavigationBar: navigationBar(isAdmin:true),
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           //   toolbarHeight: 27.0,
@@ -96,7 +98,7 @@ class AccountAdminPageState extends State<AccountAdminPage> {
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/u9.jpg'),
+              image: AssetImage('assets/image/u9.JPG'),
               fit: BoxFit.fill,
             ),
           ),
@@ -133,7 +135,7 @@ class AccountAdminPageState extends State<AccountAdminPage> {
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(50),
                                 child: new Image.asset(
-                                  'images/account.jpg',
+                                  'assets/image/u5.JPG',
                                   height: 250.0,
                                   width: 100.0,
                                   fit: BoxFit.fill,

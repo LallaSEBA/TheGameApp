@@ -18,7 +18,7 @@ class User{
   String _updateded_at;
   String _old_password;
   String _new_password;
-
+  bool isAdmin;
   
   User(this._email, this._f_Name, this._s_Name, this._t_Name, this._l_Name, this._governorate, this._district, this._city, 
        this._date_of_birth, this._phone, this._gender, this._national_no, this._created_at, this._updateded_at);

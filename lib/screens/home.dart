@@ -18,7 +18,7 @@ class Home extends StatelessWidget {
         iconTheme:IconThemeData (color:cGreyT),
       ),
       endDrawer: isAdmin? drawerAdm(context):drawerUser(context),
-      bottomNavigationBar:navigationBar(isAdmin: this.isAdmin),
+      bottomNavigationBar:navigationBar(isAdmin: this.isAdmin,),
       extendBodyBehindAppBar: true,
       body: Container(
         width: MediaQuery.of(context).size.width,

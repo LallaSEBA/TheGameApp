@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:shaths_app_thegame/ressources/const.dart';
 import '../controller/user_controller.dart';
 //import 'package:firstgameapp1/view/forgotpsswd.dart';
 
@@ -13,12 +14,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  final TextEditingController _emailAdmin = new TextEditingController();
-  final TextEditingController _passwordAdmin = new TextEditingController();
-
   final TextEditingController _email = new TextEditingController();
   final TextEditingController _password = new TextEditingController();
 
+  String msgError = '';
+  
   var db = UserController();
 
   bool valueCheck1 = false;
@@ -31,10 +31,10 @@ class LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return /*MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Login',
-      home: Scaffold(
+      home:*/ Scaffold(
         body: Container(
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
@@ -44,7 +44,7 @@ class LoginPageState extends State<LoginPage> {
             ),
           ),
           padding:
-          EdgeInsets.only(left: 23.0, top: 25.0, right: 23.0, bottom: 5.0),
+          EdgeInsets.only(left: 23.0, top: 15.0, right: 23.0, bottom: 5.0),
           child: ListView(
             children: <Widget>[
               Container(
@@ -82,11 +82,13 @@ class LoginPageState extends State<LoginPage> {
                     textDirection: TextDirection.rtl,
                     textAlign: TextAlign.right,
                     textAlignVertical: TextAlignVertical.center,
-                    controller: _emailAdmin,
+                    controller: _email,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      prefixIcon:
-                      new Icon(Icons.email, color: Color(0xffB9B9B9), size: 23.0),
+                      prefixIcon:Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Image.asset("assets/image/email.png", width: 5, height: 5, fit: BoxFit.contain,),
+                                ),
                       hintText: 'البريد الالكتروني',
                       hintStyle: TextStyle(color: Color(0xffB9B9B9),),
                     )),
@@ -100,26 +102,63 @@ class LoginPageState extends State<LoginPage> {
                 child: new TextField(
                   textDirection: TextDirection.rtl,
                   textAlign: TextAlign.right,
-                  controller: _passwordAdmin,
+                  controller: _password,
                   obscureText: true,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
-                    prefixIcon: new Icon(Icons.remove_red_eye,
-                        color: Color(0xffB9B9B9), size: 23.0),
+                    prefixIcon: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Image.asset("assets/image/eye.png", width: 5, height: 5, fit: BoxFit.contain,),
+                                ),
                     hintText: 'كلمة السر',
                     hintStyle: TextStyle(color: Color(0xffB9B9B9)),
                   ),
                 ),
               ),
-
-
+              Container(
+                height: 30.0,
+                child: new FlatButton(
+                  onPressed: (){Navigator.of(context).pushNamed('/forgotPwd');},
+                  padding: const EdgeInsets.only(top:5),
+                  child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: new Text(
+                          'نسيت كلمة المرور؟',
+                          textAlign: TextAlign.right,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: cOrange,
+                          ),
+                        ),
+                      ),                  
+              )),
               new Padding(
-                padding: new EdgeInsets.only(top: 52.0),
+                padding: new EdgeInsets.only(top: 8.0),
               ),
-
+              
+              Center(child: Text(msgError, style: TextStyle(color: cOrange, fontSize: 13, fontWeight: FontWeight.bold, height: 2),)),
               Container(
                 child: new RaisedButton(
-                  onPressed: () {},
+                  onPressed: () async{
+                    if(_password.text.trim()==''||_email.text.trim()=='') 
+                            setState(() {
+                              msgError = 'رجاء املء معلوماتك لتسجل الدخول';
+                            });
+                            else 
+                            {
+                              setState(() {
+                                    msgError = '';
+                              });
+                              var response = await db.loginData(_email.text,_password.text,valueCheck1, false);//lalla@seba_123.com
+                              print('response register: ${response}');
+                              if(response) Navigator.of(context).pushNamed('/homeUser');
+                              else setState(() {
+                                msgError = db.rsponseMsg.replaceAll('{','').replaceAll('[','');
+                                msgError = msgError.replaceAll('}','').replaceAll(']','');
+                              });
+                            }
+                  },
                   color: Color(0xff4D7FFF),
                   child: new Text(
                     'تسجيل الدخول',
@@ -133,7 +172,7 @@ class LoginPageState extends State<LoginPage> {
               ),
 
               new Padding(
-                padding: new EdgeInsets.only(top: 9.0),
+                padding: new EdgeInsets.only(top: 8.0),
               ),
 
               Column(
@@ -167,15 +206,7 @@ class LoginPageState extends State<LoginPage> {
                         margin: const EdgeInsets.all(0),
                         padding: const EdgeInsets.all(0),
                         child: new FlatButton(
-                          onPressed: (){},
                           padding: const EdgeInsets.all(0),
-                          //هنا نضع اللينك لانشاء حساب
-                          //onPressed: ()=>Navigator.of(context).push(
-                          //  new MaterialPageRoute(
-                          //  builder: (BuildContext context) => new RegisterPage(),
-                          //)
-                          //),
-
                           child: FlatButton(
                             child: new Text(
                               'قم بانشاء حساب جديد',
@@ -214,20 +245,22 @@ class LoginPageState extends State<LoginPage> {
               new Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  new Text(
-                    'مسؤول',
-                    style: new TextStyle(
-                      color: Color(0xff4D7FFF),
-                      fontWeight: FontWeight.w700,
-                      decoration: TextDecoration.underline,
-                    ),
+                  FlatButton(
+                    child: new Text(
+                      'مسؤول',
+                      style: new TextStyle(
+                        color: Color(0xff4D7FFF),
+                        fontWeight: FontWeight.w700,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ), onPressed: () {Navigator.of(context).pushNamed('/loginAdm');},
                   ),
                 ],
               ),
             ],
           ),
         ),
-      ),
+      //),
     );
   }
 }

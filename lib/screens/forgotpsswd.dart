@@ -28,7 +28,7 @@ class ForgotPageState extends State<ForgotPage> {
             constraints: BoxConstraints.expand(),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('images/u8.jpg'),
+                image: AssetImage('assets/image/u8.JPG'),
                 fit: BoxFit.fill,
               ),
             ),

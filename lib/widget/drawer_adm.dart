@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shaths_app_thegame/controller/function.dart';
+import '../controller/user_controller.dart';
 import '../ressources/const.dart';
 import 'package:shaths_app_thegame/ressources/strings.dart';
 
 Widget drawerAdm (BuildContext context ){
-  var name  = "الاسم الكامل";
+  var name  = '${UserController.user.f__name} ${UserController.user.s__name} ${UserController.user.t__name} ${UserController.user.l__name}';
   var admin = "المسؤول";
 
    return Container(          
@@ -34,7 +36,7 @@ Widget drawerAdm (BuildContext context ){
                              child:Image.asset("assets/image/u10.png", width:45,),//Icon(Icons.person, size:40, color: cWhite,)
                            ),
                          ),
-                             Text(name, style: TextStyle(color: cWhite, fontSize: 20, fontWeight: FontWeight.bold),),
+                             Text(name!=null?name:'', style: TextStyle(color: cWhite, fontSize: 20, fontWeight: FontWeight.bold),),
                              Text(admin, style: TextStyle(color: cWhite, fontSize: 16),),
                            ],
                          ),
@@ -44,10 +46,11 @@ Widget drawerAdm (BuildContext context ){
                                crossAxisAlignment: CrossAxisAlignment.end,
                                mainAxisAlignment: MainAxisAlignment.start,
                                children: <Widget>[
-                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:47), child: Text(str_All, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},)),
-                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:50), child: Text(str_shakwa, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},)),
-                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:60), child: Text(str_thana, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},)),
-                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:15), child: Text(str_iktirah, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},)),
+                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:47), child: Text(str_All, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {Navigator.of(context).pushNamed('/complainAll');},)),
+                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:50), child: Text(str_shakwa, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {Navigator.of(context).pushNamed('/complainShak');},)),
+                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:60), child: Text(str_thana, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {Navigator.of(context).pushNamed('/complainTha');},)),
+                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:15), child: Text(str_iktirah, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {Navigator.of(context).pushNamed('/complainIkt');},)),
+                                 ButtonTheme(height: 25, child:FlatButton(padding:EdgeInsets.only(left:15), child: Text(str_exit, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {fctExit();},)),
                                  
                                /*
                                  Divider(

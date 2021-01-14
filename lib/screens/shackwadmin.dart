@@ -37,7 +37,7 @@ class ShackwaAdminPageState extends State<ShackwaAdminPage> {
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/u6.jpg'),
+              image: AssetImage('assets/image/u6.JPG'),
               fit: BoxFit.fill,
             ),
           ),

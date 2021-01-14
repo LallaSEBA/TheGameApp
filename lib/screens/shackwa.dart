@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:shaths_app_thegame/widget/drawer_user.dart';
+import '../widget/navigationBar.dart';
+
 class ShackwaPage extends StatefulWidget {
   ShackwaPage({Key key}) : super(key: key);
   //final String title;
@@ -77,22 +80,24 @@ class ShackwaPageState extends State<ShackwaPage> {
       title: 'Shackwa',
       home: Scaffold(
         extendBodyBehindAppBar: true,
+        bottomNavigationBar: navigationBar(isAdmin:false, index: 1,),
+        endDrawer: drawerUser(context),
         appBar: AppBar(
      //     toolbarHeight: 29.0,
         backgroundColor: Colors.transparent,
         elevation: 0,
-          actions: <Widget>[
+          /*actions: <Widget>[
             new IconButton(
               icon: new Icon(Icons.menu),
                 onPressed: () {}
             ),
-          ],
+          ],*/
         ),
         body: Container(
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/u6.jpg'),
+              image: AssetImage('assets/image/u6.JPG'),
               fit: BoxFit.fill,
             ),
           ),

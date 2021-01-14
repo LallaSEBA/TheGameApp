@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Myhome extends StatefulWidget {
-  ResetPwd createState() => ResetPwd();
+class ResetPwd extends StatefulWidget {
+  ResetPwdState createState() => ResetPwdState();
 }
 
-class ResetPwd extends State<Myhome> {
+class ResetPwdState extends State<ResetPwd> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +18,7 @@ class ResetPwd extends State<Myhome> {
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/image/u11.jpg'),
+                      image: AssetImage('assets/image/u11.JPG'),
                       fit: BoxFit.cover,
                     ),
                   ),

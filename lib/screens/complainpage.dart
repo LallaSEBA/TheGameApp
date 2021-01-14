@@ -7,6 +7,9 @@ import '../widget/complain.dart';
 import '../widget/suggestin.dart';
 
 class Complain extends StatefulWidget{
+  final index;
+
+  const Complain({Key key, this.index}) : super(key: key);
 
   @override
   _Complainstate createState()=> _Complainstate();
@@ -18,18 +21,16 @@ class _Complainstate extends State<Complain> with SingleTickerProviderStateMixin
 
   
   void initState() {
-    // TODO: implement initState
-    super.initState();
-    // Create TabController for getting the index of current tab
-    _controller = TabController(length:4, vsync: this, initialIndex: 2);
-   // _controller.index = 2;
 
+    _controller = TabController(length:4, vsync: this, initialIndex: widget.index);
     _controller.addListener(() {
       setState(() {
        var _selectedIndex = _controller.index;
       });
       print("Selected Index: " + _controller.index.toString());
     });
+
+    super.initState();
   }
   @override
   Widget build(BuildContext context) {

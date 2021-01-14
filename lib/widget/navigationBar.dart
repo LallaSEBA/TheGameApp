@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:shaths_app_thegame/controller/user_controller.dart';
+import '../controller/function.dart';
 import '../ressources/const.dart';
 class navigationBar extends StatefulWidget {
   final bool isAdmin;
+  final int index;
 
-  const navigationBar({Key key, this.isAdmin}) : super(key: key);
+  const navigationBar({Key key, this.isAdmin, this.index}) : super(key: key);
   @override
   _navigationBarState createState() => _navigationBarState();
 }
 
 class _navigationBarState extends State<navigationBar> {
-  int index = 0;
-  bool first=true;
+  int indexSelected = 0;
+  bool first=false;
+  @override
+  void initState() {
+   // if(widget.index!=null && widget.index>0)  indexSelected = widget.index;
+     first = true;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +30,7 @@ class _navigationBarState extends State<navigationBar> {
                 //selectedItemColor: cBlue,  
                 unselectedItemColor: cWhite,  
                 fixedColor: Colors.red,
-                currentIndex: index,     
+                currentIndex: indexSelected,     
                 items: [  
                   first?BottomNavigationBarItem(title: Text('', style: TextStyle(fontSize: 0),),  icon: Image.asset("assets/image/user1.png", width: 40,)):  
                   BottomNavigationBarItem(title: Text('', style: TextStyle(fontSize: 0),), activeIcon: Image.asset("assets/image/user.png", width: 40,),  icon: Image.asset("assets/image/user1.png", width: 40,)),  
@@ -31,11 +40,31 @@ class _navigationBarState extends State<navigationBar> {
                   BottomNavigationBarItem(title: Text('', style: TextStyle(fontSize: 0),), activeIcon:  Image.asset("assets/image/exit.png", width: 40.0), icon:  Image.asset("assets/image/exit1.png", width: 40.0)),  
                 ],  
                 onTap: (int i) {
+                        if (UserController.user.isAdmin!=null && UserController.user.isAdmin)
+                        switch (i){ 
+                          case 0:Navigator.of(context).pushNamed('/accountAdm');
+                           break;
+                          case 1:Navigator.of(context).pushNamed('/shakwaAdm');
+                           break;
+                          case 2:fctExit();
+                           break;
+                        }else
+                        switch (i){ 
+                          case 0:Navigator.of(context).pushNamed('/account');
+                           break;
+                          case 1:Navigator.of(context).pushNamed('/shakwa');
+                           break;
+                          case 2:Navigator.of(context).pushNamed('/notif');
+                           break;
+                          case 3:fctExit();
+                           break;
+                        }
                         first = false;
                         setState(() {
-                          index = i;
-                        }
-                        );         
+                          indexSelected = i;
+                        });
+                        
+                                 
                 }          
         ));
   }

@@ -23,7 +23,7 @@ class _FillupState extends State<Fillup>{
    String _selectedMth;
    String _selectedYear;
    var months = ["جانفي", "فيفري", "مارس", "أفريل", "ماي", "جوان", "جويلية", "أوت", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
-   String _selectedPhone;
+   String _selectedPhone='+962';
    
   var db = UserController();
 
@@ -46,38 +46,54 @@ class _FillupState extends State<Fillup>{
    var _id8  = TextEditingController();
    var _id9  = TextEditingController();
    var _id10 = TextEditingController();
+
    String natioalNo = '';
-   
+   String msgFillInfo = '';
+
    register() async{
      natioalNo = "${_id1.text.trim()}${_id2.text.trim()}${_id3.text.trim()}${_id4.text.trim()}${_id5.text.trim()}${_id6.text.trim()}${_id7.text.trim()}"+
                  "${_id8.text.trim()}${_id9.text.trim()}${_id10.text.trim()}";
-      UserController.user.setFname = _fName.text;
-      UserController.user.setSname = _sName.text;
-      UserController.user.setTname = _tName.text;
-      UserController.user.setLname = _rName.text;           
-      UserController.user.setNational_no = natioalNo;       
-       
-      var sdate = "$_selectedMth/$_selectedDay/$_selectedYear";  
-      try
-      {
-      var inputFormat = DateFormat('dd/MM/yyyy');
-      var inputDate = inputFormat.parse(sdate); 
+     setState(() { msgFillInfo = '';}); 
 
-      var outputFormat = DateFormat('dd/MM/yyyy');
-      var outputDate = outputFormat.format(inputDate); 
-        //DateTime dt = DateTime.parse(sdate);
-      UserController.user.setDate_of_birth = outputDate;
+     if(_fName.text=='' || _sName.text=='' || _tName.text=='' || _rName.text=='' || natioalNo == '' || genderMale == null || _phone.text ==''||
+        _selectedMth=='' || _selectedDay=='' || _selectedYear=='' || _mantika.text=='' || _mohafadha.text == '' || _liwa.text=='' )
+        setState(() {
+              msgFillInfo ='! الرجاء ملء كل المعلومات';
+        }); 
+      else {
+              UserController.user.setFname = _fName.text;
+              UserController.user.setSname = _sName.text;
+              UserController.user.setTname = _tName.text;
+              UserController.user.setLname = _rName.text;           
+              UserController.user.setNational_no = natioalNo;       
+              
+              var sdate = "$_selectedMth/$_selectedDay/$_selectedYear";  
+              try
+              {
+              var inputFormat = DateFormat('dd/MM/yyyy');
+              var inputDate = inputFormat.parse(sdate); 
 
-      }catch( e){print(e);}
+              var outputFormat = DateFormat('dd/MM/yyyy');
+              var outputDate = outputFormat.format(inputDate); 
+                //DateTime dt = DateTime.parse(sdate);
+              UserController.user.setDate_of_birth = outputDate;
 
-      genderMale==1 ? UserController.user.setGender ='ذكر' : UserController.user.setGender = 'أنثى';
+              }catch( e){print(e);}
 
-      UserController.user.setPhone       = '$_selectedPhone${_phone.text}';
-      UserController.user.setGovernorate = _mohafadha.text;
-      UserController.user.setDistrict    = _liwa.text;
-      UserController.user.setCity        = _mantika.text;
-      var response = await db.upadateData();
-      if (response) Navigator.of(context).pushReplacementNamed('/done');
+              genderMale==1 ? UserController.user.setGender ='male' : UserController.user.setGender = 'female';
+
+              UserController.user.setPhone       = /*'$_selectedPhone*/'${_phone.text}';
+              UserController.user.setGovernorate = _mohafadha.text;
+              UserController.user.setDistrict    = _liwa.text;
+              UserController.user.setCity        = _mantika.text;
+              var response = await db.upadateData();
+              setState(() { 
+                  msgFillInfo = db.rsponseMsg.replaceAll('{','').replaceAll('[','');
+                  msgFillInfo = msgFillInfo.replaceAll('}','').replaceAll(']','');
+                }); 
+
+              if (response) Navigator.of(context).pushReplacementNamed('/youDidIt');
+      }
    }
 
    addDayItem(){
@@ -265,7 +281,7 @@ addPhoneNumber(){
                       Container(height:1550,
                        decoration: new BoxDecoration(image: DecorationImage(image: AssetImage("assets/image/u7.JPG"), fit: BoxFit.fill)),
                       ),
-                  Padding(padding: const EdgeInsets.only(top:110, left:20, right: 20),
+                  Padding(padding: const EdgeInsets.only(top:100, left:20, right: 20),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children:<Widget>[
@@ -315,7 +331,7 @@ addPhoneNumber(){
                           ),
                           Padding(padding: EdgeInsets.only(left:10)), 
                           Flexible(
-                            child: decoratedTextField(str_hintName4, 13,_tName, align:TextAlign.right),
+                            child: decoratedTextField(str_hintName3, 13,_tName, align:TextAlign.right),
                           )
                         ]),
                         Padding(padding: EdgeInsets.only(bottom:40)),                    
@@ -493,7 +509,9 @@ addPhoneNumber(){
                         Padding(padding: EdgeInsets.only(bottom:40)),  
                         inputTitle (str_liwa),
                         decoratedTextField('', 13, _liwa, align: TextAlign.right),
-                        Padding(padding: EdgeInsets.only(bottom:40)),  
+                        Padding(padding: EdgeInsets.only(bottom:10)),  
+                        Center(child: Text(msgFillInfo,textAlign:TextAlign.center , style: TextStyle(color: cOrange, fontSize: 13, fontWeight: FontWeight.bold, height: 2),)),
+                        Padding(padding: EdgeInsets.only(bottom:20)),  
                         Container(
                           width: MediaQuery.of(context).size.width,
                           child: RaisedButton(
@@ -514,6 +532,7 @@ addPhoneNumber(){
                             onPressed:() => register()
                           ),
                         ),
+
                         Padding(padding: EdgeInsets.only(bottom:40)),  
                          Row(
                          mainAxisAlignment: MainAxisAlignment.spaceBetween,

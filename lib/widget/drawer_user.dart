@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:shaths_app_thegame/controller/function.dart';
+import 'package:shaths_app_thegame/controller/user_controller.dart';
 import '../ressources/strings.dart';
 import '../ressources/const.dart';
 
 Widget drawerUser (BuildContext context ){
-  var name  = "الاسم الكامل";
-  var email = "البريد الإلكتروني";
+  var name  = '${UserController.user.f__name} ${UserController.user.s__name} ${UserController.user.t__name} ${UserController.user.l__name}';
+  name=name.replaceAll('null', '');
+  var email =UserController.user.email;
 
    return Container(          
            width: MediaQuery.of(context).size.width*0.5,
@@ -20,7 +23,7 @@ Widget drawerUser (BuildContext context ){
                      child: Column(
                        crossAxisAlignment: CrossAxisAlignment.end,
                        children: <Widget>[                       
-                         Padding(padding:EdgeInsets.only(top: 35)),
+                         Padding(padding:EdgeInsets.only(top: 45)),
                          Column(
                            crossAxisAlignment: CrossAxisAlignment.end,
                            children: <Widget>[
@@ -34,8 +37,8 @@ Widget drawerUser (BuildContext context ){
                              child:Image.asset("assets/image/u10.png", width:45,),//Icon(Icons.person, size:40, color: cWhite,)
                             ),
                           ),
-                             Text(name, style: TextStyle(color: cWhite, fontSize: 20, fontWeight: FontWeight.bold),),
-                             Text(email, style: TextStyle(color: cWhite, fontSize: 16),),
+                             Text(name!=null? name: '', style: TextStyle(color: cWhite, fontSize: 20, fontWeight: FontWeight.bold),),
+                             Text(email!=null? email:'', style: TextStyle(color: cWhite, fontSize: 16),),
                            ],
                          ),
                          Padding(padding:EdgeInsets.only(top: 20)),
@@ -44,9 +47,10 @@ Widget drawerUser (BuildContext context ){
                                crossAxisAlignment: CrossAxisAlignment.end,
                                mainAxisAlignment: MainAxisAlignment.start,
                                children: <Widget>[
-                                 FlatButton(padding:EdgeInsets.only(left:47), child: Text(str_Account, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},),
-                                 FlatButton(padding:EdgeInsets.only(left:50), child: Text(str_nnotification, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},),
-                                 FlatButton(padding:EdgeInsets.only(left:60), child: Text(str_demande, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},),
+                                 FlatButton(padding:EdgeInsets.only(left:47), child: Text(str_Account, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {Navigator.of(context).pushNamed('/account');},),
+                                 FlatButton(padding:EdgeInsets.only(left:50), child: Text(str_nnotification, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {Navigator.of(context).pushNamed('/notif');},),
+                                 FlatButton(padding:EdgeInsets.only(left:60), child: Text(str_demande, style: TextStyle(color: cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {Navigator.of(context).pushNamed('/shakwa');},),
+                                 
                                /*
                                  Divider(
                                        color: cGreyL,
@@ -58,7 +62,8 @@ Widget drawerUser (BuildContext context ){
                              ),
                            ),
                           Padding(padding:EdgeInsets.only(top: 20)),
-                          FlatButton(padding:EdgeInsets.only(left:50), child: Text("تسجيل الخروج", style: TextStyle(color:cBlack, fontSize: 15, fontWeight: FontWeight.bold),), onPressed: () {},),
+                          FlatButton(padding:EdgeInsets.only(left:50), child: Text("تسجيل الخروج", style: TextStyle(color:cBlack, fontSize: 15, fontWeight: FontWeight.bold),),
+                                     onPressed: () {fctExit();},),
                        ],
                      ),
                    ),

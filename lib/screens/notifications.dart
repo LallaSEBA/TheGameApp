@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import '../widget/navigationBar.dart';
 
-class Myhome extends StatefulWidget {
-  NotificationHome createState() => NotificationHome();
+class NotificationHome extends StatefulWidget {
+  _NotificationHomeState createState() => _NotificationHomeState();
 }
 
-class NotificationHome extends State<Myhome> {
+class _NotificationHomeState extends State<NotificationHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: navigationBar(isAdmin: false,),
+      bottomNavigationBar: navigationBar(isAdmin: false,index: 2,),
       body: Container(
         child: SingleChildScrollView(
           child: Column(

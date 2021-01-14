@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../ressources/strings.dart';
-import '../controller/db_manager.dart';
+import '../controller/user_controller.dart';
 import '../ressources/const.dart';
 
 class Done extends StatelessWidget {
@@ -98,17 +98,20 @@ class Done extends StatelessWidget {
                                                     switch  (screenType){
                                                       case str_Greate:{
                                                       //  titleTxt   = "عمل رائع" ;
-                                                      var typeUser = await DBManager.isAdminToken();
-                                                       typeUser ? Navigator.of(context).pushReplacementNamed('/homeUser'):
-                                                                  Navigator.of(context).pushReplacementNamed('/homeAdm');
+                                                      UserController.user.isAdmin ?
+                                                      Navigator.of(context).pushReplacementNamed('/homeAdm'):
+                                                      Navigator.of(context).pushReplacementNamed('/homeUser');
                                                       }
                                                       break;
                                                       case str_Congrat:{
-                                                       // titleTxt   = "تهانينا" ;
+                                                      UserController.user.isAdmin ?
+                                                      Navigator.of(context).pushReplacementNamed('/homeAdm'):
+                                                      Navigator.of(context).pushReplacementNamed('/homeUser');
                                                       }
                                                       break;
                                                       default :{
-                                                        //titleTxt   = "تم الاستلام" ;
+                                                      if(!UserController.user.isAdmin)
+                                                        Navigator.of(context).pushReplacementNamed('/shakwa');
                                                       }
                                                       break;
                                                     }

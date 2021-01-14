@@ -147,12 +147,18 @@ class _SignUp extends State<SignUp> {
                                       });
                                       else 
                                       {
+                                        setState(() {
+                                              msgError = '';
+                                        });
                                         var response = await db.registerData(email.text, password.text, cPassword.text);//lalla@seba_123.com
                                         print('response register: ${response}');
                                         if(response) Navigator.of(context).pushReplacementNamed('/fillUp');
                                         else setState(() {
-                                          msgError = db.rsponseMsg.replaceAll('{','').replaceAll('[','');
-                                          msgError = msgError.replaceAll('}','').replaceAll(']','');
+                                          if (db.rsponseMsg!=null)
+                                          {
+                                             msgError = db.rsponseMsg.replaceAll('{','').replaceAll('[','');
+                                             msgError = msgError.replaceAll('}','').replaceAll(']',''); 
+                                          }
                                         });
                                       }
                                     }),
