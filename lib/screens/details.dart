@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shaths_app_thegame/widget/navigationBar.dart';
+import 'package:shaths_app_thegame/controller/user_controller.dart';
+import 'package:intl/intl.dart';
+import 'package:shaths_app_thegame/screens/done.dart';
 
 class Myhome extends StatefulWidget {
   DetailsHome createState() => DetailsHome();
@@ -7,6 +10,10 @@ class Myhome extends StatefulWidget {
 
 class DetailsHome extends State<Myhome> {
  
+    UserController db = new UserController();
+  
+  String now = DateFormat("yyyy/MM/dd").format(DateTime.now());
+
 
   /// اللواء
   static const List<String> lItems = const [
@@ -59,6 +66,18 @@ class DetailsHome extends State<Myhome> {
   ];
 
   String typeValue = typeItems[0];
+  
+  
+  final TextEditingController _numberController = new TextEditingController();
+  final TextEditingController _subjectController = new TextEditingController();
+  final TextEditingController _localController = new TextEditingController();
+  final TextEditingController _nameController = new TextEditingController();
+  TextEditingController _sectionController = new TextEditingController();
+  TextEditingController _typeController = new TextEditingController();
+  TextEditingController _mController = new TextEditingController(); //المحافظة
+  TextEditingController _lController = new TextEditingController(); //اللواء
+  final TextEditingController _detailsController = new TextEditingController();
+  final TextEditingController _suggestionController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +120,7 @@ class DetailsHome extends State<Myhome> {
                                   autofocus: false,
                                   textAlign: TextAlign.right,
                                   decoration: InputDecoration(
-                                      hintText: ' التاريخ : 2020/12/23',
+                                      hintText: ' التاريخ : $now',
                                       hintStyle: TextStyle(fontSize: 14),
                                       contentPadding: EdgeInsets.fromLTRB(
                                           20.0, 5.0, 20.0, 5.0),
@@ -123,6 +142,7 @@ class DetailsHome extends State<Myhome> {
                           child: Align(
                             alignment: Alignment.topRight,
                             child: TextFormField(
+                           controller: _numberController,
                               keyboardType: TextInputType.text,
                               autofocus: false,
                               textAlign: TextAlign.right,
@@ -145,6 +165,7 @@ class DetailsHome extends State<Myhome> {
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: TextFormField(
+                            controller: _nameController,
                             keyboardType: TextInputType.text,
                             autofocus: false,
                             textAlign: TextAlign.right,
@@ -165,6 +186,7 @@ class DetailsHome extends State<Myhome> {
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: TextFormField(
+                            controller: _localController,
                             keyboardType: TextInputType.text,
                             autofocus: false,
                             textAlign: TextAlign.right,
@@ -406,6 +428,7 @@ class DetailsHome extends State<Myhome> {
                             alignment: AlignmentDirectional.topEnd,
                             child: IntrinsicWidth(
                               child: TextFormField(
+                                controller: _subjectController,
                                 keyboardType: TextInputType.text,
                                 autofocus: false,
                                 textAlign: TextAlign.right,
@@ -428,6 +451,7 @@ class DetailsHome extends State<Myhome> {
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: TextField(
+                            controller: _detailsController,
                             keyboardType: TextInputType.multiline,
                             maxLines: 10,
                             textAlign: TextAlign.right,
@@ -448,6 +472,7 @@ class DetailsHome extends State<Myhome> {
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: TextField(
+                            controller: _suggestionController,
                             keyboardType: TextInputType.multiline,
                             maxLines: 4,
                             textAlign: TextAlign.right,
@@ -467,7 +492,23 @@ class DetailsHome extends State<Myhome> {
                       ),
                       Container(
                         child: RaisedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            db.makeRequest(
+                              int.parse(_numberController.text.trim()),
+                              _nameController.text.trim(),
+                              _localController.text.trim(),
+                              _lController.text.trim(),
+                              _mController.text.trim(),
+                              _sectionController.text.trim(),
+                              _typeController.text.trim(),
+                              _subjectController.text.trim(),
+                              _detailsController.text.trim(),
+                              _suggestionController.text.trim(),
+                            );
+                            Navigator.of(context).push(new MaterialPageRoute(
+                              builder: (BuildContext context) => new Done(),
+                            ));
+                          },
                           child: Text(' ارسال',
                               style: TextStyle(color: Colors.white)),
                           shape: RoundedRectangleBorder(
