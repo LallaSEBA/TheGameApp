@@ -16,6 +16,7 @@ import 'screens/loginadmin.dart';
 import 'screens/signup.dart';
 import 'screens/verify%20_your_account.dart';
 import 'screens/done.dart';
+import 'screens/details.dart';
 import 'controller/user_controller.dart';
 
     
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
        '/youDidIt'   : (BuildContext context)=>Done(screenType:str_Congrat),
        '/greate'     : (BuildContext context)=>Done(screenType:str_Greate),
        '/done'       : (BuildContext context)=>Done(screenType:str_Received),
+       '/details' : (BuildContext context) => new Myhome(),
        '/notif'      : (BuildContext context)=>NotificationHome(),
        '/account'    : (BuildContext context)=>AccountPage(),
        '/accountAdm' : (BuildContext context)=>AccountAdminPage(),
